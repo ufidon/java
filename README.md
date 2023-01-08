@@ -2,19 +2,27 @@
 
 Online resources and examples
 
-# Modules
+## Modules
 
 1. Fundamental Java programming
 2. Java OOP
 3. JavaFX GUI programming
-4. Regular expressions
-5. Generics
-6. Multithreading and parallel programming
-7. Network programming
-8. Database programming
+4. Generics
+5. Multithreading and parallel programming
+6. Network programming
+7. Database programming
 
+## [Setup JDK and IDE](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/#software)
+1. Download and install [Java JDK 11 (LTS) ](https://www.azul.com/downloads/?version=java-11-lts&os=windows&architecture=x86-64-bit&package=jdk) following the [instructions](https://docs.azul.com/core/zulu-openjdk/install/windows)
+2. Download and install IDE
+   1. Download and install [Apache Netbeans](https://netbeans.apache.org/)
+   2. Download and install [Eclipse](https://www.eclipse.org/downloads/)
+   3. Download and install [InteliJ IDEA](https://www.jetbrains.com/idea/)
+3. IDE startup
+   1. [Netbeans startup instructions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_11/cw/content/supplements/Supplement2dNetBeansStartup.pdf)
+   2. [Eclipse Startup Instructions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_11/cw/content/supplements/Supplement2fEclipseStartup.pdf)
 
-# Reference textbooks
+## Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
   * [Student resources](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/)
   * [Source code](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/source-code.php)
