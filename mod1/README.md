@@ -352,7 +352,7 @@ a + Math.random()*b; //  returns a random number ∊ [a,b)
 a + Math.random()*(b+1); //  returns a random number ∊ [a,b]
 
 ```
-2. Compute the sides and angles of a triangle giving the coordinates of its three [vertices](https://liveexample.pearsoncmg.com/liang/intro12e/html/ComputeAngles.html).
+1. Compute the sides and angles of a triangle giving the coordinates of its three [vertices](../bookcode/chapter4/ComputeAngles.java).
   $${\displaystyle \alpha =\arccos \left({\frac {b^{2}+c^{2}-a^{2}}{2bc}}\right)}$$
   $${\displaystyle \beta =\arccos \left({\frac {a^{2}+c^{2}-b^{2}}{2ac}}\right)}$$
   $${\displaystyle \gamma =\arccos \left({\frac {a^{2}+b^{2}-c^{2}}{2ab}}\right)}$$
@@ -500,10 +500,10 @@ String s = number + "";
 
 **Examples**
 
-1. [Gusessing birthday](https://liveexample.pearsoncmg.com/liang/intro12e/html/GuessBirthday.html)
-2. [Converting a hexadecimal digit to a decimal value](https://liveexample.pearsoncmg.com/liang/intro12e/html/HexDigit2Dec.html)
-3. [Revising the lottery program using strings](https://liveexample.pearsoncmg.com/liang/intro12e/html/LotteryUsingStrings.html)
-4. Format output using the printf statement: System.out.printf(format, items). Write a [program](https://liveexample.pearsoncmg.com/liang/intro12e/html/FormatDemo.html) to generate the following table
+1. [Gusessing birthday](../bookcode/chapter4/GuessBirthday.java)
+2. [Converting a hexadecimal digit to a decimal value](../bookcode/chapter4/HexDigit2Dec.java)
+3. [Revising the lottery program using strings](../bookcode/chapter4/LotteryUsingStrings.java)
+4. Format output using the printf statement: System.out.printf(format, items). Write a [program](../bookcode/chapter4/FormatDemo.java) to generate the following table
 
 | Degrees | Radians | Sine  | Cosine | Tangent |
 | ------- | ------- | ----- | ------ | ------- |
@@ -564,18 +564,18 @@ for(initial-actions; loop-continuation-condition; action-after-each-iteration)
   ```
 
 **Examples**
-1. [Guessing number one time](https://liveexample.pearsoncmg.com/liang/intro12e/html/GuessNumberOneTime.html)
-2. [Guessing number until get it](https://liveexample.pearsoncmg.com/liang/intro12e/html/GuessNumber.html)
-3. [Subtraction quiz loop](https://liveexample.pearsoncmg.com/liang/intro12e/html/SubtractionQuizLoop.html)
-4. [Ending a loop with a sentinel value](https://liveexample.pearsoncmg.com/liang/intro12e/html/SentinelValue.html)
-5. [Minimizing numerical errors](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestSum.html)
-6. [Finding the greatest commond divisor(gcd)](https://liveexample.pearsoncmg.com/liang/intro12e/html/GreatestCommonDivisor.html)
-7. [Predicting future tuition](https://liveexample.pearsoncmg.com/liang/intro12e/html/FutureTuition.html)
-8. [Converting decimals to hexadecimals](https://liveexample.pearsoncmg.com/liang/intro12e/html/Dec2Hex.html)
-9. [Test break](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestBreak.html)
-10. [Test continue](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestContinue.html)
-11. [Checking palindrome](https://liveexample.pearsoncmg.com/liang/intro12e/html/Palindrome.html)
-12. [Displaying prime numbers](https://liveexample.pearsoncmg.com/liang/intro12e/html/PrimeNumber.html)
+1. [Guessing number one time](../bookcode/chapter5/GuessNumberOneTime.java)
+2. [Guessing number until get it](../bookcode/chapter5/GuessNumber.java)
+3. [Subtraction quiz loop](../bookcode/chapter5/SubtractionQuizLoop.java)
+4. [Ending a loop with a sentinel value](../bookcode/chapter5/SentinelValue.java)
+5. [Minimizing numerical errors](../bookcode/chapter5/TestSum.java)
+6. [Finding the greatest commond divisor(gcd)](../bookcode/chapter5/GreatestCommonDivisor.java)
+7. [Predicting future tuition](../bookcode/chapter5/FutureTuition.java)
+8. [Converting decimals to hexadecimals](../bookcode/chapter5/Dec2Hex.java)
+9. [Test break](../bookcode/chapter5/TestBreak.java)
+10. [Test continue](../bookcode/chapter5/TestContinue.java)
+11. [Checking palindrome](../bookcode/chapter5/Palindrome.java)
+12. [Displaying prime numbers](../bookcode/chapter5/PrimeNumber.java)
 
 
 ## Methods
@@ -636,13 +636,13 @@ A method is a collection of statements that are grouped together to perform an o
 
 **Examples**
 
-1. [Method does not return value](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestVoidMethod.html)
-2. [Method returns value](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestReturnGradeMethod.html)
-3. [Pass by value](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestPassByValue.html)
-4. [gcd method](https://liveexample.pearsoncmg.com/liang/intro12e/html/GreatestCommonDivisorMethod.html)
-5. [prime number method](https://liveexample.pearsoncmg.com/liang/intro12e/html/PrimeNumberMethod.html)
-6. [Hexadecimal to decimal conversion method](https://liveexample.pearsoncmg.com/liang/intro12e/html/Hex2Dec.html)
-7. [Method overloading](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestMethodOverloading.html)
+1. [Method does not return value](../bookcode/chapter6/TestVoidMethod.java)
+2. [Method returns value](../bookcode/chapter6/TestReturnGradeMethod.java)
+3. [Pass by value](../bookcode/chapter6/TestPassByValue.java)
+4. [gcd method](../bookcode/chapter6/GreatestCommonDivisorMethod.java)
+5. [prime number method](../bookcode/chapter6/PrimeNumberMethod.java)
+6. [Hexadecimal to decimal conversion method](../bookcode/chapter6/Hex2Dec.java)
+7. [Method overloading](../bookcode/chapter6/TestMethodOverloading.java)
 
 
 Scope of Local Variables:
@@ -683,8 +683,8 @@ Scope of Local Variables:
 
 **Examples**
 
-1. [Generating random characters](https://liveexample.pearsoncmg.com/liang/intro12e/html/TestRandomCharacter.html) with [RandomCharacter class](https://liveexample.pearsoncmg.com/liang/intro12e/html/RandomCharacter.html)
-2. [Print calendar](https://liveexample.pearsoncmg.com/liang/intro12e/html/PrintCalendar.html)
+1. [Generating random characters](../bookcode/chapter6/TestRandomCharacter.java) with [RandomCharacter class](../bookcode/chapter6/RandomCharacter.java)
+2. [Print calendar](../bookcode/chapter6/PrintCalendar.java)
 
 ## Single-demensional arrays
 Array is a data structure that represents a collection of the same types of data. There are two styles to declare array variables.
