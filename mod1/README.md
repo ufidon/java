@@ -353,11 +353,10 @@ a + Math.random()*(b+1); //  returns a random number ∊ [a,b]
 
 ```
 2. Compute the sides and angles of a triangle giving the coordinates of its three [vertices](https://liveexample.pearsoncmg.com/liang/intro12e/html/ComputeAngles.html).
-  $$\begin{align*}
-  {\displaystyle \alpha =\arccos \left({\frac {b^{2}+c^{2}-a^{2}}{2bc}}\right)}\\
-  {\displaystyle \beta =\arccos \left({\frac {a^{2}+c^{2}-b^{2}}{2ac}}\right)}\\
-  {\displaystyle \gamma =\arccos \left({\frac {a^{2}+b^{2}-c^{2}}{2ab}}\right)}
-  \end{align*}$$
+  $${\displaystyle \alpha =\arccos \left({\frac {b^{2}+c^{2}-a^{2}}{2bc}}\right)}$$
+  $${\displaystyle \beta =\arccos \left({\frac {a^{2}+c^{2}-b^{2}}{2ac}}\right)}$$
+  $${\displaystyle \gamma =\arccos \left({\frac {a^{2}+b^{2}-c^{2}}{2ab}}\right)}$$
+
 
 ### Character data type
 A char type is 16 bits, i.e. two bytes. Unicode takes two bytes, preceded by \u, expressed in four hexadecimal numbers that run from '\u0000' to '\uFFFF'. So, Unicode can represent 65535 + 1 characters.
