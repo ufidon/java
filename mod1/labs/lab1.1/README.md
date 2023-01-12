@@ -1,4 +1,4 @@
-# Lab01: Calculating local annual tax
+# Lab1.1: Calculating local annual tax
 
 Write a complete java program that calculates the local annual tax for residents in where they live.
 
