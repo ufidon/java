@@ -8,7 +8,7 @@ Chapter 1-7
 3. Selections and loops
 4. Mathematical functions, characters, and strings
 5. Methods
-6. Single-demensional arrays
+6. Single-dimensional arrays
 
 ## Elementary programming
 Java is a general purpose programming language. It can be used to develop and deploy applications on desktop computers, small hand-held devices, and the Internet for servers.
@@ -85,7 +85,7 @@ public class ComputeAreaWithConstant {
 
 3. Numerical type conversion (type casting): 
    * implicitly: double d = 3; // type widening 
-   * exlicitly: int i = (int)3.14; // type narrowing
+   * explicitly: int i = (int)3.14; // type narrowing
 
 4. Common errors and pitfalls in Java programming:
    * Undeclared/Uninitialized Variables and Unused Variables
@@ -189,7 +189,7 @@ public class Lottery {
 }
 ```
 
-**Excercises**
+**Exercises**
 
 1. Write a program to calculate BMI (Body Mass Index)
 
@@ -200,7 +200,7 @@ public class Lottery {
 | 25.0 <= BMI < 30.0 | Overweight     |
 | 30.0 <= BMI        | Obese          |
 
-2. Computie taxes: 2022 Single Filers Tax Brackets
+2. Compute taxes: 2022 Single Filers Tax Brackets
 
 | If taxable income is:               | The tax due is:                                     |
 | ----------------------------------- | --------------------------------------------------- |
@@ -500,7 +500,7 @@ String s = number + "";
 
 **Examples**
 
-1. [Gusessing birthday](../bookcode/chapter4/GuessBirthday.java)
+1. [Guessing birthday](../bookcode/chapter4/GuessBirthday.java)
 2. [Converting a hexadecimal digit to a decimal value](../bookcode/chapter4/HexDigit2Dec.java)
 3. [Revising the lottery program using strings](../bookcode/chapter4/LotteryUsingStrings.java)
 4. Format output using the printf statement: System.out.printf(format, items). Write a [program](../bookcode/chapter4/FormatDemo.java) to generate the following table
@@ -686,7 +686,7 @@ Scope of Local Variables:
 1. [Generating random characters](../bookcode/chapter6/TestRandomCharacter.java) with [RandomCharacter class](../bookcode/chapter6/RandomCharacter.java)
 2. [Print calendar](../bookcode/chapter6/PrintCalendar.java)
 
-## Single-demensional arrays
+## Single-dimensional arrays
 Array is a data structure that represents a collection of the same types of data. There are two styles to declare array variables.
 
 ```java
@@ -726,7 +726,7 @@ When an array is created, its elements are assigned the default value of
 
 The array elements are accessed through the index. The array indices are 0-based, i.e., it starts from 0 to arrayRefVar.length-1. Each element in the array is represented using the following syntax, known as an indexed variable: arrayRefVar[index];
 
-Array can be delcared, created, and initialized in one step with an initializer. 
+Array can be declared, created, and initialized in one step with an initializer. 
 
 ```java
 double[] myList = {1.9, 2.9, 3.4, 3.5};
@@ -884,7 +884,7 @@ int[] list2 = reverse(list1);
 ```
 
 1. [Passing Arrays as Arguments](../bookcode/chapter7/TestPassArray.java)
-2. [Counting occurence of each letter](../bookcode/chapter7/CountLettersInArray.java)
+2. [Counting occurrence of each letter](../bookcode/chapter7/CountLettersInArray.java)
 3. [Variable-length arguments](../bookcode/chapter7/VarArgsDemo.java)
 4. [Searching arrays linearly](../bookcode/chapter7/LinearSearch.java)
 5. [Searching arrays binarily](../bookcode/chapter7/BinarySearch.java)
