@@ -105,7 +105,8 @@ for (int i = 0; i < 10; i++)
 
 **Visibility Modifiers and Accessor/Mutator Methods**
 
-* public > protected > package > private
+* public > protected > package(default) > private (visibility decrease)
+* no visibility modifier is default
 
 ```java
 // C1.java
@@ -732,6 +733,126 @@ class Person extends Object {
     public String toString() {
         return "Person";
     }
+}
+
+```
+
+**Casting objects**
+* Casting a primitive-type value returns a new value. 
+* Casting an object reference does not create a new object.
+
+```java
+// implicity casting from a subclass to a superclass
+Object o = new Student(); 
+m(o);
+
+// explicit casting from a superclass to a subclass
+Student s = (Student) o; 
+
+// Use the instanceof operator to test whether an object is an instance of a class
+Object o2 = new Circle();
+if(o2 instanceof Circle)
+  System.out.println("The circle area is " + ((Circle)o2).getArea());
+
+```
+
+**Examples**
+* [Casting demonstration](../bookcode/chapter11/CastingDemo.java)
+
+
+**Comparing two objects**
+* The equals() method compares the contents of two objects. 
+
+```java
+// test whether two objects are equal
+object1.equals(object2);
+
+// The default implementation of the equals method in the Object class is
+public boolean equals(Object obj) {
+  // checks whether two reference variables point to the same object using the == operator
+  return this == obj;
+
+}
+
+// override equals in custom class to test whether two distinct objects have the same content.
+@Override
+public boolean equals(Object o) {
+  if (o instanceof Circle)
+    return radius == ((Circle)o).radius;
+  else
+    return false;
+}
+
+```
+
+**The [ArrayList](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ArrayList.html) Class**
+*  can be used to store an unlimited number of objects
+   *  the elements stored in an ArrayList must be of an object type
+   *  so use Wrapper class for primitive types
+*  is known as a generic class with a generic type E. You can specify a concrete type to replace E when creating an ArrayList
+
+
+```java
+// 1. creates an ArrayList of Strings 
+ArrayList<String> cities = new ArrayList<String>(); 
+// or
+ArrayList<String> cities = new ArrayList<>(); 
+
+// 2. Creating an ArrayList from an array of objects
+String[] array = {"red", "green", "blue"};
+ArrayList<String> list = new ArrayList<>(Arrays.asList(array));
+
+// 3. Creating an array of objects from an ArrayList:
+String[] array1 = new String[list.size()];
+list.toArray(array1);
+
+// 4. Useful Methods for Lists
+java.util.Collections.sort(list);
+java.util.Collections.max(list);
+ava.util.Collections.min(list);
+java.util.Collections.shuffle(list);
+```
+
+**Examples**
+* [Test ArrayList](../bookcode/chapter11/TestArrayList.java)
+* [Differences and Similarities between Arrays and ArrayList](../bookcode/chapter11/DistinctNumbers.java)
+* [use an ArrayList to implement Stack](../bookcode/chapter11/MyStack.java)
+
+**The protected Modifier**
+
+![accessibility](../bookimages/11.modifiers.png)
+
+* **private** modifier hides the members of the class completely
+* **default** modifier allows the members of the class to be accessed directly from any class within the same package
+* **protected** modifier enables the members of the class to be accessed by the subclasses in any package
+* **public** modifier enables the members of the class to be accessed by any class
+* change visibility
+  * A subclass may override a protected method defined in its superclass and change its visibility to public
+  * a subclass cannot weaken the accessibility of a method defined in the superclass
+* Applicability
+  * The private and protected modifiers can be used only for members of the class
+  * The public modifier and the default modifier (i.e., no modifier) can be used on members of the class as well as on the class
+
+
+**The final Modifier**
+
+```java
+// A final class cannot be extended
+public final class A{}
+
+public class B{
+// A final method cannot be overridden by its subclasses
+  public final void m(){}  
+}
+
+// A final variable is a constant
+public class C{
+  public final static double 𝛑 = 3.1415926;
+  public final double PI = 3.1415926;
+  public void m(){
+    // The final modifier can also be used on local variables to make them constant
+    final double e = 2.71828;
+  }
 }
 
 ```
