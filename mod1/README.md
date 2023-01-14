@@ -26,8 +26,8 @@ JDK (Java Development Kit) has three editions:
 Java elementary programming shares many common features with C++.
 
 * Numerical data types: byte, short, int, long, float, double
-* Printing numbers using methods from the [out](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/io/PrintStream.html) data member of class  [System](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/System.html)
-* Reading numbers from keyboard with a [Scanner](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Scanner.html) object by its methods: nextByte(), nextShort(), nextInt(), nextLong(), nextFloat(), nextDouble
+* Printing numbers using methods from the [out](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/io/PrintStream.html) data member of class  [System](https://docs.oracle.com/en/java/javase/12/docs/api/java.base/java/lang/System.html) such as *print, println and printf*.
+* Reading numbers from keyboard with a [Scanner](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Scanner.html) object by its methods: *nextByte(), nextShort(), nextInt(), nextLong(), nextFloat(), nextDouble*
 * Numeric operators: +, -, *, /, %
   * Integer division 5/2=2 vs. real number division 5.0/2=2.5
   * Calculations involving floating-point numbers are approximated: System.out.println(1.0-0.9); // prints 0.09999999999999998
