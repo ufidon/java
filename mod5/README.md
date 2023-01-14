@@ -3,7 +3,7 @@
 Online resources and examples
 
 # Module 5: Multithreading and parallel programming
-
+Chapter 32
 
 
 # Reference textbooks

@@ -3,7 +3,7 @@
 Online resources and examples
 
 # Module 2: Java OOP
-Chapter 9-12
+Chapter 9-13
 
 ## Objects and classes
 
@@ -1371,6 +1371,50 @@ Use the [Scanner](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/j
   String line2 = input.nextLine(); // ""->line2
   ```
   * Don't not use a line-based input after a token-based input
+
+
+**Reading Data from the Web**
+
+```java
+// local file url: file://absolutepath
+// for example: 
+// on Unix: file:///tmp/scores.txt
+// on Windows: file:///C:/Users/User/scores.txt
+import java.util.Scanner;
+
+public class ReadFileFromURL {
+  public static void main(String[] args) {
+    // user enters a URL string
+    System.out.print("Enter a URL: ");   
+    String URLString = new Scanner(System.in).next();
+       
+    try {
+      // create a url object
+      java.net.URL url = new java.net.URL(URLString); 
+
+      int count = 0;
+      // create a scanner object
+      Scanner input = new Scanner(url.openStream());
+      while (input.hasNext()) {
+        String line = input.nextLine(); // Note: '\n' excluded
+        // count the number of characters in each line
+        count += line.length();
+      } 
+      
+      System.out.println("The file size is " + count + " characters");
+    }
+    catch (java.net.MalformedURLException ex) {
+      System.out.println("Invalid URL");
+    }
+    catch (java.io.IOException ex) {
+      System.out.println("IO Errors");
+    }
+  }
+} 
+```
+
+**Examples**
+* [A web crawler](../bookcode/chapter12/WebCrawler.java)
 
 
 # Reference textbooks
