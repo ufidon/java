@@ -11,9 +11,9 @@ Write three methods main(), primeSum(), and bePrime(). The skeleton of these met
 		Use a loop, better with a logical variable.
 	}
 
-	//return the sum of all prime numbers less than m
+	//return the sum of all prime numbers less than or equal to m
 	public static int primeSum(int m) {
-		// for loop to traverse all integers from 2 to m
+		// for loop to traverse all integers from 2 to m, both inclusive
 		// Call bePrime() in the loop body, preferably using an if statement
 	}
 
@@ -34,8 +34,8 @@ The main function should do following.
 Please enter an integer no less than 2: 2
 The sum of all prime numbers between 2 and 2 is 2
  
-Please enter an integer no less than 2: 10
-The sum of all prime numbers between 2 and 10 is 17
+Please enter an integer no less than 2: 7
+The sum of all prime numbers between 2 and 7 is 17
  
 Please enter an integer no less than 2: 100
 The sum of all prime numbers between 2 and 100 is 1060
