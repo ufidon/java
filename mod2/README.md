@@ -573,7 +573,7 @@ public class Test {
 * What are inherited from Superclass?
   * data fields and methods
   * Superclass's constructors are NOT inherited
-    * Subclasses' constructors can only be invoked using the keyword super
+    * they can only be invoked using the keyword super
       ```java
       super(); // call the no-arg constructor, or
       super(arguments); // other constructors
