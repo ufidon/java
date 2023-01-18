@@ -5,6 +5,18 @@ Online resources and examples
 # Module 3: JavaFX GUI programming
 Chapter 14-16
 
+## JavaFX Basics
+
+
+
+
+## Event-Driven Programming and Animations
+
+
+
+## JavaFX UI Controls and Multimedia
+
+
 
 
 # Reference textbooks

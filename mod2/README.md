@@ -3,7 +3,7 @@
 Online resources and examples
 
 # Module 2: Java OOP
-Chapter 9-13
+Chapter 9-12
 
 ## Objects and classes
 
