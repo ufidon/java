@@ -4,13 +4,13 @@ Online resources and examples
 
 ## Modules
 
-1. Fundamental Java programming
-2. Java OOP
-3. JavaFX GUI programming
-4. Generics
-5. Multithreading and parallel programming
-6. Network programming
-7. Database programming
+1. [Fundamental Java programming](./mod1/README.md)
+2. [Java OOP](./mod2/README.md)
+3. [JavaFX GUI programming](./mod3/README.md)
+4. [Generics](./mod4/README.md)
+5. [Multithreading and parallel programming](./mod5/README.md)
+6. [Network programming](./mod6/README.md)
+7. [Database programming](./mod7/README.md)
 
 ## [Setup JDK and IDE](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/#software)
 1. Download and install [Java JDK FX 11 (LTS) ](https://www.azul.com/downloads/?version=java-11-lts&os=windows&architecture=x86-64-bit&package=jdk) following the [instructions](https://docs.azul.com/core/zulu-openjdk/install/windows). **Note: Choose JDK FX**
