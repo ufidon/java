@@ -1,4 +1,4 @@
-# Selections and loops
+# Selections
 
 * Boolean type and relational operators:
   * boolean b = (1>2)?
