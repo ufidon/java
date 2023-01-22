@@ -56,11 +56,11 @@ The Panda class consists of the following components.
        - age: double
      - Class data fields (using public final static modifier)
        - num_leg: int
-   - Constructors 
+   - Constructors (public)
      - Blank (no-argument) constructor: the constructor that has no parameter
      - Standard constructor: the constructor with the same number of parameters as instance properties.
-   - Behaviors (Methods) 
-     -toPrint(): no return, print the name and current value of every property.
+   - Behaviors (public Methods) 
+     - toPrint(): no return, print the name and current value of every property.
      - climb(): no return, describe how the panda climbs using an output statement, for example, it climbs slowly after a meal.
 
 1. In the main function of the TestPanda class,
