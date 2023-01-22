@@ -1199,8 +1199,6 @@ public class ClockPane extends Pane {
 ```
 
 * Calculate the endpoint of a hand
-$$endX = centerX + handLength × \sin(θ)$$
-$$endY = centerY – handLength × \cos(θ)$$
 
 | Analysis | Formula |
 | --- | --- |
