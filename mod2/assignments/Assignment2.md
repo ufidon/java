@@ -118,3 +118,10 @@ Index 7 is out of bound [0,6]
   Triangle(10,4,5);
   ```
    * Refer to example [TestCircle](../demos/demo2/TestCircle.java)
+
+Test cases
+---
+```
+InvalidTriangleException: Invalid triangle with sides: 1.0, 2.0, 3.0
+Created triangle with sides: 3.0, 4.0, 5.0
+```
