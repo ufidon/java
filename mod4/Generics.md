@@ -1,12 +1,5 @@
-# cop3809
+# Generics
 
-Online resources and examples
-
-# Module 4: Generics
-Chapter 13,19
-
-- [Abstract Classes and Interfaces](./Interface.md)
-- [Generics](./Generics.md)
 
 
 # Reference textbooks
