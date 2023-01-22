@@ -617,10 +617,602 @@ HBox and VBox
 * An HBox or a VBox can lay out children only in one row or one column
 * FlowPane can lay out its children in multiple rows or multiple columns 
 
+![HBox and VBox](./images/hvbox.png)
+
+```java
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+public class ShowHBoxVBox extends Application {
+  @Override 
+  public void start(Stage primaryStage) {
+    
+    BorderPane pane = new BorderPane();
+
+    pane.setTop(getHBox()); 
+    pane.setLeft(getVBox());
+    
+    Scene scene = new Scene(pane);
+    primaryStage.setTitle("Show HBox & VBox"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+  
+  private HBox getHBox() {
+    HBox hBox = new HBox(15); 
+    hBox.setPadding(new Insets(15, 15, 15, 15));
+    hBox.setStyle("-fx-background-color: gold");
+    hBox.getChildren().add(new Button("Computer Science"));
+    hBox.getChildren().add(new Button("Data Analytics"));
+    ImageView imageView = new ImageView(new Image("image/us.gif"));
+    hBox.getChildren().add(imageView);
+    return hBox;
+  }
+  
+  private VBox getVBox() {
+    VBox vBox = new VBox(15);
+    vBox.setPadding(new Insets(15, 5, 5, 5));
+    vBox.getChildren().add(new Label("Courses"));
+    
+    Label[] courses = {
+        new Label("Data Structures & Algorithms"), 
+        new Label("Functional Programming"), 
+        new Label("Artificial Intelligence"), 
+        new Label("Machine Learning")
+    };
+
+    for (Label course: courses) {
+      VBox.setMargin(course, new Insets(0, 0, 0, 15));
+      vBox.getChildren().add(course);
+    }
+    
+    return vBox;
+  }
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+} 
+```
+
+
+[Shapes](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/package-summary.html)
+---
+* provides a set of 2D classes for two-dimensional geometry
+
+![shapes](./images/shapes.png)
+
+* Many common properties:
+  * fill, specifies a color that fills the interior of a shape
+  * stroke, specifies a color that is used to draw the outline of a shape
+  * strokeWidth specifies the width of the outline of a shape
+
+
+[Text](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/text/Text.html)
+---
+![show text](./images/showtext.png)
+
+```java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.FontPosture;
+
+public class ShowText extends Application {
+  @Override 
+  public void start(Stage primaryStage) {
+    
+    Pane pane = new Pane();
+    pane.setPadding(new Insets(5, 5, 5, 5));
+
+    Text text1 = new Text(20, 20, "Programming is fun");
+    text1.setFont(Font.font("Courier", FontWeight.BOLD, FontPosture.ITALIC, 15));
+    text1.setUnderline(true);  
+    pane.getChildren().add(text1);
+       
+    Text text2 = new Text(60, 60, "Programming is fun\nDisplay text");
+    pane.getChildren().add(text2);     
+
+    Text text3 = new Text(10, 100, "Programming is fun\nDisplay text");
+    text3.setFill(Color.RED);
+    text3.setStrikethrough(true);    
+    pane.getChildren().add(text3); 
+       
+    Scene scene = new Scene(pane);
+    primaryStage.setTitle("ShowText"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+
+[Line](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Line.html)
+---
+![two cross lines](./images/lines.png)
+
+```java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.shape.Line;
+
+public class ShowLine extends Application {
+  @Override 
+  public void start(Stage primaryStage) {   
+    
+    Scene scene = new Scene(new LinePane(), 200, 200);
+    primaryStage.setTitle("Show Line"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+
+class LinePane extends Pane {
+  public LinePane() {
+    Line line1 = new Line(10, 10, 10, 10);
+    line1.endXProperty().bind(widthProperty().subtract(10));
+    line1.endYProperty().bind(heightProperty().subtract(10));
+    line1.setStrokeWidth(5);
+    line1.setStroke(Color.RED);
+    getChildren().add(line1);
+    
+    Line line2 = new Line(10, 10, 10, 10);
+    line2.startXProperty().bind(widthProperty().subtract(10));
+    line2.endYProperty().bind(heightProperty().subtract(10));
+    line2.setStrokeWidth(10);
+    line2.setStroke(Color.GREEN);
+    getChildren().add(line2);
+  }
+}
+```
+
+
+[Rectangle](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Rectangle.html)
+---
+![rectangle](./images/rectangle.png)
+
+```java
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.text.Text;
+import javafx.scene.shape.Rectangle;
+
+public class ShowRectangle extends Application {
+  @Override 
+  public void start(Stage primaryStage) {       
+    
+    Rectangle r1 = new Rectangle(25, 10, 60, 30);
+    r1.setStroke(Color.BLUE);   // default stroke color is white
+    r1.setFill(Color.WHITE);    // default fill color is black
+    Rectangle r2 = new Rectangle(25, 50, 60, 30);    
+    Rectangle r3 = new Rectangle(25, 90, 60, 30);
+    r3.setArcWidth(15);
+    r3.setArcHeight(25);    
+    
+    Group group = new Group();
+    group.getChildren().addAll(new Text(10, 27, "r1"), r1, 
+      new Text(10, 67, "r2"), r2, new Text(10, 107, "r3"), r3);
+    
+    for (int i = 0; i < 4; i++) {
+      Rectangle r = new Rectangle(100, 50, 100, 30);
+      r.setRotate(i * 360 / 8);
+      r.setStroke(Color.color(Math.random(), Math.random(), 
+        Math.random()));
+      r.setFill(Color.YELLOW); // change to r.setFill(null); what will you get?
+      group.getChildren().add(r);
+    }
+
+    // transformation can be applied to all nodes in the group
+    // group.setRotate(30);
+    
+    // a BorderPane put the group at its center
+    Scene scene = new Scene(new BorderPane(group), 250, 150);
+    primaryStage.setTitle("Show Rectangle"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+  
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+* change r.setFill(Color.YELLOW) to r.setFill(null)
+
+![rectangle without fill](./images/rectangle2.png)
+
+* transformation can be applied to all nodes in a group
+  * rotate 30 degree clockwise
+
+![transform a group](./images/grouptrans.png)
 
 
 
+[Circle](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Circle.html) and [Ellipse](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Ellipse.html)
+---
+![ellipses](./images/ellipse.png)
 
+```java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.shape.Ellipse;
+
+public class ShowEllipse extends Application {
+  @Override 
+  public void start(Stage primaryStage) {   
+    
+    Scene scene = new Scene(new MyEllipse(), 300, 200);
+    primaryStage.setTitle("Show Ellipses"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+
+class MyEllipse extends Pane {
+  private void paint() {
+    getChildren().clear();
+    for (int i = 0; i < 16; i++) {
+      
+      Ellipse e1 = new Ellipse(getWidth() / 2, getHeight() / 2, 
+        getWidth() / 2 - 50, getHeight() / 2 - 50);
+      e1.setStroke(Color.color(Math.random(), Math.random(), Math.random()));
+      e1.setFill(Color.WHITE);
+      e1.setRotate(i * 360 / 16);
+      getChildren().add(e1);
+    }
+  }
+  
+  @Override
+  public void setWidth(double width) {
+    super.setWidth(width);
+    paint();
+  }
+  
+  @Override
+  public void setHeight(double height) {
+    super.setHeight(height);
+    paint();
+  }
+}
+```
+
+
+[Arc](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Arc.html
+)
+---
+* Note: Angles are measured in degrees and follow the usual mathematical conventions
+  * trigonometric methods in the Math class use the angles in radians
+
+![arcs](./images/arcs.png)
+
+```java
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.Group;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
+import javafx.scene.text.Text;
+
+public class ShowArc extends Application {
+  @Override 
+  public void start(Stage primaryStage) {   
+    Arc arc1 = new Arc(150, 100, 80, 80, 30, 35); 
+    arc1.setFill(Color.RED); 
+    arc1.setType(ArcType.ROUND); 
+    
+    Arc arc2 = new Arc(150, 100, 80, 80, 30 + 90, 35);
+    arc2.setFill(Color.WHITE);
+    arc2.setType(ArcType.OPEN);
+    arc2.setStroke(Color.BLACK);
+
+    Arc arc3 = new Arc(150, 100, 80, 80, 30 + 180, 35);
+    arc3.setFill(Color.WHITE);
+    arc3.setType(ArcType.CHORD);
+    arc3.setStroke(Color.BLACK);
+    
+    Arc arc4 = new Arc(150, 100, 80, 80, 30 + 270, 35);
+    arc4.setFill(Color.GREEN);
+    arc4.setType(ArcType.CHORD);
+    arc4.setStroke(Color.BLACK);
+    
+    
+    Group group = new Group();
+    group.getChildren().addAll(new Text(210, 40, "arc1: round"), 
+      arc1, new Text(20, 40, "arc2: open"), arc2,
+      new Text(20, 170, "arc3: chord"), arc3, 
+      new Text(210, 170, "arc4: chord"), arc4);      
+
+    
+    Scene scene = new Scene(new BorderPane(group), 300, 200);
+    primaryStage.setTitle("Show Arcs"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+[Polygon](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Polygon.html) and [Polyline](https://openjfx.io/javadoc/11/javafx.graphics/javafx/scene/shape/Polyline.html)
+---
+* A polygon is created from an array of x,y coordinates
+* The Polyline class is similar to the Polygon class except it is not automatically closed
+
+![polygon](./images/polygon.png)
+
+```java
+import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.scene.shape.Polygon;
+
+public class ShowPolygon extends Application {
+  @Override 
+  public void start(Stage primaryStage) {   
+    
+    Scene scene = new Scene(new MyPolygon(), 250, 200);
+    primaryStage.setTitle("Show Polygon"); 
+    primaryStage.setScene(scene); 
+    primaryStage.show(); 
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+
+class MyPolygon extends Pane {
+  private void paint() {
+    
+    Polygon polygon = new Polygon();
+    polygon.setFill(Color.WHITE);
+    polygon.setStroke(Color.GOLD);
+    polygon.setStrokeWidth(5);
+    ObservableList<Double> list = polygon.getPoints();
+    
+    double centerX = getWidth() / 2, centerY = getHeight() / 2;
+    double radius = Math.min(getWidth(), getHeight()) * 0.4;
+
+    for (int i = 0; i < 6; i++) {
+      list.add(centerX + radius * Math.cos(2 * i * Math.PI / 6)); 
+      list.add(centerY + radius * Math.sin(2 * i * Math.PI / 6));
+    }     
+    
+    getChildren().clear();
+    getChildren().add(polygon); 
+  }
+  
+  @Override
+  public void setWidth(double width) {
+    super.setWidth(width);
+    paint();
+  }
+  
+  @Override
+  public void setHeight(double height) {
+    super.setHeight(height);
+    paint();
+  }
+}
+```
+
+* Replace Polygon polygon = new Polygon(); with Polyline polygon = new Polyline();
+  * What will you get?
+
+![polyline](./images/polyline.png)
+
+
+Case Study: The ClockPane Class
+---
+![clock with current time](./images/clock.png) 
+
+```java
+// DisplayClock.java
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+public class DisplayClock extends Application {
+  @Override
+  public void start(Stage primaryStage) {
+    ClockPane clock = new ClockPane();
+    String timeString = clock.getHour() + ":" + clock.getMinute() 
+      + ":" + clock.getSecond();
+    Label lblCurrentTime = new Label(timeString);
+
+    BorderPane pane = new BorderPane();
+    pane.setCenter(clock);
+    pane.setBottom(lblCurrentTime);
+    BorderPane.setAlignment(lblCurrentTime, Pos.TOP_CENTER);
+
+    Scene scene = new Scene(pane, 250, 250);
+    primaryStage.setTitle("Display Clock");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+
+// ClockPane.java
+import java.util.Calendar; 
+import java.util.GregorianCalendar;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
+
+public class ClockPane extends Pane {
+  private int hour;
+  private int minute;
+  private int second;
+  
+  public ClockPane() {
+    setCurrentTime();
+  }
+
+  public ClockPane(int hour, int minute, int second) {
+    this.hour = hour;
+    this.minute = minute;
+    this.second = second;
+  }
+
+  public int getHour() {
+    return hour;
+  }
+
+  public void setHour(int hour) {
+    this.hour = hour;
+    paintClock();
+  }
+
+  public int getMinute() {
+    return minute;
+  }
+
+  public void setMinute(int minute) {
+    this.minute = minute;
+    paintClock();
+  }
+
+  public int getSecond() {
+    return second;
+  }
+
+  public void setSecond(int second) {
+    this.second = second;
+    paintClock();
+  }
+  
+  public void setCurrentTime() {
+    
+    Calendar calendar = new GregorianCalendar();
+ 
+    this.hour = calendar.get(Calendar.HOUR_OF_DAY);
+    this.minute = calendar.get(Calendar.MINUTE);
+    this.second = calendar.get(Calendar.SECOND);
+    
+    paintClock(); 
+  }
+  
+  private void paintClock() {
+    
+    double clockRadius = Math.min(getWidth(), getHeight()) * 0.8 * 0.5;
+    double centerX = getWidth() / 2;
+    double centerY = getHeight() / 2;
+
+    Circle circle = new Circle(centerX, centerY, clockRadius);
+    circle.setFill(Color.WHITE);
+    circle.setStroke(Color.BLACK);
+    Text t1 = new Text(centerX - 5, centerY - clockRadius + 12, "12");
+    Text t2 = new Text(centerX - clockRadius + 3, centerY + 5, "9");
+    Text t3 = new Text(centerX + clockRadius - 10, centerY + 3, "3");
+    Text t4 = new Text(centerX - 3, centerY + clockRadius - 3, "6");
+    
+    double sLength = clockRadius * 0.8;
+    double secondX = centerX + sLength * Math.sin(second * (2 * Math.PI / 60));
+    double secondY = centerY - sLength * Math.cos(second * (2 * Math.PI / 60));
+    Line sLine = new Line(centerX, centerY, secondX, secondY);
+    sLine.setStroke(Color.RED);
+
+    double mLength = clockRadius * 0.65;
+    double xMinute = centerX + mLength * Math.sin(minute * (2 * Math.PI / 60));
+    double minuteY = centerY - mLength * Math.cos(minute * (2 * Math.PI / 60));
+    Line mLine = new Line(centerX, centerY, xMinute, minuteY);
+    mLine.setStroke(Color.BLUE);
+    
+    double hLength = clockRadius * 0.5;
+    double hourX = centerX + hLength * Math.sin((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
+    double hourY = centerY - hLength * Math.cos((hour % 12 + minute / 60.0) * (2 * Math.PI / 12));
+    Line hLine = new Line(centerX, centerY, hourX, hourY);
+    hLine.setStroke(Color.GREEN);
+    
+    getChildren().clear();  
+    getChildren().addAll(circle, t1, t2, t3, t4, sLine, mLine, hLine);
+  }
+  
+  @Override
+  public void setWidth(double width) {
+    super.setWidth(width);
+    paintClock();
+  }
+  
+  @Override
+  public void setHeight(double height) {
+    super.setHeight(height);
+    paintClock();
+  }
+}
+```
+
+* Calculate the endpoint of a hand
+$$endX = centerX + handLength × \sin(θ)$$
+$$endY = centerY – handLength × \cos(θ)$$
+
+| Analysis | Formula |
+| --- | --- |
+| ![calculate clock hand](./images/hand.png) | $endX = centerX + handLength × \sin(θ)$ <br/> $endY = centerY – handLength × \cos(θ)$ |
+
+* Calculate each angle θ of second, minute and hour hand
+
+| hand   | angle                                        |
+| ------ | -------------------------------------------- |
+| second | $second × (2π/60)$                           |
+| minute | $(minute+second/60)×(2π/60)$                 |
+| hour   | $(hour + minute/60 +second/(60×60))×(2π/60)$ |
 
 # Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
