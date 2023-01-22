@@ -44,6 +44,8 @@ Please enter an integer no less than 2: 1000
 The sum of all prime numbers between 2 and 1000 is 76127
 ```
 
+* Refer to example [PrimeNumber](../demos/demo1/PrimeNumber.java)
+
 ## Q2:
 
 1. Create a Panda class and test it with a TestPanda class.
@@ -111,3 +113,7 @@ number of legs: 4
 panda2.climb(): 
 I slowly climb just after a meal of bamboo shooters.
 ```
+
+* Refer to example
+  * [Circle](../demos/demo1/Circle.java) and
+  * [TestCircle](../demos/demo1/TestCircle.java)
