@@ -1,13 +1,5 @@
-# cop3809
+# File I/O
 
-Online resources and examples
-
-# Module 4: Generics
-Chapter 13,19,17
-
-- [Abstract Classes and Interfaces](./Interface.md)
-- [Generics](./Generics.md)
-- [File I/O](./FileIO.md)
 
 
 # Reference textbooks
