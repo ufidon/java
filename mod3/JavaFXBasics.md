@@ -45,7 +45,9 @@ Install JavaFX
 * Install JDK FX (JDK + JavaFX bundle), **preferred**
   * Download and install [JDK 11 FX for Windows x86 64-bit](https://www.azul.com/downloads/?version=java-11-lts&os=windows&architecture=x86-64-bit&package=jdk-fx).
     * Make sure **Install everything on local drive**
+
     ![Install JavaFX](./images/jdkfx.png)
+    
   * Choose the appropriate installation package if you use other operating systems
 
 
