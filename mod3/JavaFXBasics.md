@@ -23,10 +23,10 @@ public class MyJavaFX extends Application {
     primaryStage.setScene(scene); 
     primaryStage.show(); 
 
-    Stage stage1 = new Stage();
-    stage1.setTitle("Secondary Stage");
-    stage1.setScene(new Scene(new Button("Welcome to JavaFX."), 300, 60));
-    stage1.show();
+    Stage stage2 = new Stage();
+    stage2.setTitle("Secondary Stage");
+    stage2.setScene(new Scene(new Button("Welcome to JavaFX."), 300, 60));
+    stage2.show();
   }
   
   /**
@@ -38,6 +38,16 @@ public class MyJavaFX extends Application {
   }
 }
 ```
+
+Install JavaFX
+---
+* Install JDK + JavaFX separately, NOT recommended
+* Install JDK FX (JDK + JavaFX bundle), **preferred**
+  * Download and install [JDK 11 FX for Windows x86 64-bit](https://www.azul.com/downloads/?version=java-11-lts&os=windows&architecture=x86-64-bit&package=jdk-fx).
+    * Make sure **Install everything on local drive**
+    ![Install JavaFX](./images/jdkfx.png)
+  * Choose the appropriate installation package if you use other operating systems
+
 
 JavaFX
 ---
@@ -1216,5 +1226,6 @@ public class ClockPane extends Pane {
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
   * [Student resources](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/)
   * [Source code](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/source-code.php)
-* [JavaFX Documentation Project](https://fxdocs.github.io/docs/html5/)
+* [JavaFX API documentation](https://openjfx.io/javadoc/11/)
+  * [JavaFX Documentation Project](https://fxdocs.github.io/docs/html5/)
 * [JavaFX 11: IllegalAccessError when creating Label](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label)
