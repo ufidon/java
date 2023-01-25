@@ -38,10 +38,14 @@ Index 7 is out of bound [0,6]
 ```
 
 ## Q2: Custom exception class for triangle sides
+For a triangle with three sides of length $a, b, c$ to be valid, 
+* the length of each side must be greater than 0, and
+* the sum of any two sides must be greater than the third side by length
+
 1. Design a Triangle class that 
    1. extends the GeometricObject class below
     ```java
-    public class GeometricObject {
+    class GeometricObject {
       private String color = "white";
       private boolean filled;
       private java.util.Date dateCreated;
@@ -93,6 +97,8 @@ Index 7 is out of bound [0,6]
       }
     }
    ```
+   * Put the Triangle class and GeometricObject in the same file.
+     * It is OK if you put them in different files.
    * Refer to example [Circle](../demos/demo2/Circle.java)
 2. Design the custom exception class InvalidTriangleException
   ```java
@@ -111,7 +117,7 @@ Index 7 is out of bound [0,6]
   }
   ```
    * Refer to example [InvalidRadiusException](../demos/demo2/InvalidRadiusException.java)
-3. Design a test class to create three triangles to trigger the exception with the second triangle
+1. Design a test class to create three triangles to trigger the exception with the second triangle
   ```java
   Triangle(3,4,5);
   Triangle(1,2,3);
