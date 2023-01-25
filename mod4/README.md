@@ -1,7 +1,3 @@
-# cop3809
-
-Online resources and examples
-
 # Module 4: Generics
 Chapter 13,19,17
 

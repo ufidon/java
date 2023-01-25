@@ -1,7 +1,3 @@
-# cop3809
-
-Online resources and examples
-
 # Module 2: Java OOP
 Chapter 9-12
 

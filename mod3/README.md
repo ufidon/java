@@ -1,7 +1,3 @@
-# cop3809
-
-Online resources and examples
-
 # Module 3: JavaFX GUI programming
 Chapter 14-16
 

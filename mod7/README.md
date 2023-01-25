@@ -1,7 +1,3 @@
-# cop3809
-
-Online resources and examples
-
 # Module 7: Database programming
 Chapter 34-35
 
