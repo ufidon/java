@@ -668,6 +668,341 @@ Practice
   ```
 
 
+Listeners for Observable Objects
+---
+* A listener can be registered to process a value change (invalidation) in an observable object
+  * Every binding property is an instance of Observable
+  * Once the value in the observable object is changed in the property, the listener is notified
+* An observable object is an instance of [interface Observable](https://openjfx.io/javadoc/11/javafx.base/javafx/beans/Observable.html)
+  * It contains the *addListener(InvalidationListener listener)* method for adding a listener
+  * The listener class should implement the [InvalidationListener interface](https://openjfx.io/javadoc/11/javafx.base/javafx/beans/InvalidationListener.html)
+    *  uses the invalidated(Observable o) method to handle the property value change
+* Note: there are subtle difference between value change and value invalidation. They are  interchangeable here for simplicity.
+
+
+Examples
+---
+
+```java
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+
+public class ObservablePropertyDemo {
+  public static void main(String[] args) {
+    DoubleProperty balance = new SimpleDoubleProperty();
+    
+    // using anonymous inner class
+    balance.addListener(new InvalidationListener() {
+      public void invalidated(Observable ov) {
+        System.out.println("New value: " +  balance.doubleValue());
+      }
+    });
+
+    // using lambda expression
+    // multiple listener can be added
+    balance.addListener(ov -> System.out.println("New value: " + balance.doubleValue()));
+
+    balance.set(4.5);
+  }
+}
+```
+
+![resizable circle and rectangle](./images/resizeable.png)
+
+```java
+import javafx.application.Application;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+
+public class ResizableCircleRectangle extends Application {
+  
+  private Circle circle = new Circle(60);
+  private Rectangle rectangle = new Rectangle(120, 120);
+  private StackPane pane = new StackPane();
+  
+  @Override
+  public void start(Stage primaryStage) {       
+    circle.setFill(Color.GOLD);
+    rectangle.setFill(Color.RED);
+    rectangle.setStroke(Color.ORANGE);
+    pane.getChildren().addAll(rectangle, circle);
+    
+    Scene scene = new Scene(pane, 300, 140);
+    primaryStage.setTitle("ResizableCircleRectangle"); 
+    primaryStage.setScene(scene);
+    primaryStage.show();
+    
+    pane.widthProperty().addListener(ov -> resize());
+    pane.heightProperty().addListener(ov -> resize());
+  }
+  
+  private void resize() {
+    double length = Math.min(pane.getWidth(), pane.getHeight());
+    circle.setRadius(length / 2 - 15);
+    rectangle.setWidth(length - 30);
+    rectangle.setHeight(length - 30);
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+
+```
+
+
+Animation
+---
+
+![rising flag](./images/risingflag.gif)
+
+* JavaFX provides an abstract [Animation class](https://openjfx.io/javadoc/11/javafx.graphics/javafx/animation/Animation.html)
+  * with the core functionality for all animations
+* Animation class hierarchy
+  ```
+  Animation <- Transition <- PathTransition, FadeTransition, RotateTransition
+            |<- Timeline
+  ```
+  
+[PathTransition](https://openjfx.io/javadoc/11/javafx.graphics/javafx/animation/PathTransition.html)
+---
+* animates the moves of a node along a path from one end to the other over a given time
+
+Animate a rectangle moving along the circle
+---
+
+![path transition](./images/pathtrans.gif)
+
+```java
+import javafx.animation.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class FlagRisingAnimation extends Application {
+  @Override
+  public void start(Stage primaryStage) {
+    Pane pane = new Pane();
+    
+    ImageView imageView = new ImageView("us.gif");
+    pane.getChildren().add(imageView);
+    
+    PathTransition pt = new PathTransition(Duration.millis(10000),
+      new Line(100, 200, 100, 0), imageView);
+    pt.setCycleCount(Timeline.INDEFINITE);
+    pt.play();
+    
+    Scene scene = new Scene(pane, 250, 200);
+    primaryStage.setTitle("FlagRisingAnimation");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+Rising US flag
+---
+* Download the ![US flag](../bookmedia/image/us.gif) and save it in the same folder as FlagRisingAnimation.class
+
+![rising flag](./images/risingflag.gif)
+
+```java
+import javafx.animation.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Line;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class FlagRisingAnimation extends Application {
+  @Override
+  public void start(Stage primaryStage) {
+    Pane pane = new Pane();
+    
+    ImageView imageView = new ImageView("us.gif");
+    Line line = new Line(100, 200, 100, 0);
+    pane.getChildren().add(imageView);
+    // pane.getChildren().add(line);
+    
+    PathTransition pt = new PathTransition(Duration.millis(10000),
+     line , imageView);
+    pt.setCycleCount(100);
+    pt.play();
+    
+    Scene scene = new Scene(pane, 250, 200);
+    primaryStage.setTitle("FlagRisingAnimation");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+Practice
+---
+* Uncomment the line in the code and run it again
+  ```java
+  pane.getChildren().add(line);
+  ```
+
+[FadeTransition](https://openjfx.io/javadoc/11/javafx.graphics/javafx/animation/FadeTransition.html)
+---
+* animates the change of the opacity in a node over a given time
+
+![animates the change of opacity in the ellipse](./images/fadetrans.gif)
+
+```java
+import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+public class FadeTransitionDemo extends Application {
+  @Override
+  public void start(Stage primaryStage) {
+    Pane pane = new Pane();
+    Ellipse ellipse = new Ellipse(10, 10, 100, 50);
+    ellipse.setFill(Color.RED); 
+    ellipse.setStroke(Color.VIOLET);
+    ellipse.centerXProperty().bind(pane.widthProperty().divide(2));
+    ellipse.centerYProperty().bind(pane.heightProperty().divide(2));    
+    ellipse.radiusXProperty().bind(
+      pane.widthProperty().multiply(0.4));    
+    ellipse.radiusYProperty().bind(
+      pane.heightProperty().multiply(0.4)); 
+    pane.getChildren().add(ellipse);
+    
+    FadeTransition ft = 
+      new FadeTransition(Duration.millis(3000), ellipse);
+    ft.setFromValue(1.0);
+    ft.setToValue(0.1);
+    ft.setCycleCount(Timeline.INDEFINITE);
+    ft.setAutoReverse(true);
+    ft.play();
+    
+    ellipse.setOnMousePressed(e -> ft.pause());
+    ellipse.setOnMouseReleased(e -> ft.play());
+    
+    Scene scene = new Scene(pane, 200, 150);
+    primaryStage.setTitle("FadeTransitionDemo");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+  
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+[Timeline](https://openjfx.io/javadoc/11/javafx.graphics/javafx/animation/Timeline.html)
+---
+* programs any animation using one or more [KeyFrames](https://openjfx.io/javadoc/11/javafx.graphics/javafx/animation/KeyFrame.html)
+  * Each KeyFrame is executed sequentially at a specified time interval
+
+Flashing text
+---
+
+![flashing text](./images/timeline.gif)
+
+```java
+import javafx.animation.Animation;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
+public class TimelineDemo extends Application {
+  @Override
+  public void start(Stage primaryStage) {
+    StackPane pane = new StackPane();
+    Text text = new Text(20, 50, "Programming if fun");
+    text.setFill(Color.RED);
+    pane.getChildren().add(text);
+
+    EventHandler<ActionEvent> eventHandler = e -> {
+      if (text.getText().length() != 0) {
+        text.setText("");
+      }
+      else {
+        text.setText("Programming is fun");
+      }
+    };
+    
+    // The eventHandler is called when the duration for the key frame elapsed
+    Timeline animation = new Timeline(new KeyFrame(Duration.millis(500), eventHandler));
+    animation.setCycleCount(Timeline.INDEFINITE);
+    animation.play();
+
+    text.setOnMouseClicked(e -> {
+      if (animation.getStatus() == Animation.Status.PAUSED) {
+        animation.play();
+      }
+      else {
+        animation.pause();
+      }
+    });
+    
+    Scene scene = new Scene(pane, 250, 50);
+    primaryStage.setTitle("TimelineDemo");
+    primaryStage.setScene(scene);
+    primaryStage.show();
+  }
+
+  public static void main(String[] args) {
+    launch(args);
+  }
+}
+```
+
+A running clock
+---
+
+![A running clock](./images/runningclock.gif)
+
+* [source code](./demos/ClockAnimation.java)
+
+
+Case Study: Bouncing Ball
+---
+
+![bouncing ball](./images/bounceball.gif)
+
+* source code
+  * [BallPane](./demos/BallPane.java)
+  * [BounceBallControl](./demos/BounceBallControl.java)
+
 # Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
   * [Student resources](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/)
@@ -676,3 +1011,5 @@ Practice
   * [JavaFX Documentation Project](https://fxdocs.github.io/docs/html5/)
 * [JavaFX 11: IllegalAccessError when creating Label](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label)
 * [Handling JavaFX Events](https://docs.oracle.com/javafx/2/events/processing.htm)
+* [Make GIF in Linux with one simple command](https://averagelinuxuser.com/make-gif-in-linux-with-one-simple-command/)
+* [ScreenToGif](https://www.screentogif.com/)
