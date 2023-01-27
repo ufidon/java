@@ -1,6 +1,6 @@
 # Lab2: JavaFX Basics
 
-## Q1: Display a string around a circle (From textbook Q14.5)
+## Q1: Display a string around a circle (textbook Q14.5)
 Write a program that displays a string “Welcome to Java” around the circle, as shown below. 
 
 
@@ -8,7 +8,7 @@ Write a program that displays a string “Welcome to Java” around the circle, 
 HINT: You need to display each character in the right location with appropriate rotation using a loop, treat a blank space a one character
 
 
-## Q2: Display three distinct random cards (From textbook Q14.3)
+## Q2: Display three distinct random cards (textbook Q14.3)
 Write a program that displays three cards randomly selected from a deck of 52, as shown below. 
 
 ![show 3 distinct random cards](./images/3cards.png)
