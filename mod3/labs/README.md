@@ -51,3 +51,7 @@ The defect comes from:
 
 * The location of a character is its bottom-left corner
 * The rotation pivot point is the center of the character
+
+10% Extra credits are given for fixing the defect:
+
+![fixed](./images/extra.png)
