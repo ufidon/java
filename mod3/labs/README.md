@@ -15,7 +15,7 @@ Write a program that displays a string “Welcome to Java” around a circle, as
 
 ![text circle](./images/textcircle.png)
 
-HINT: You need to display each character in the right location with appropriate rotation using a loop, add a blank space to separate the head and tail.
+HINT: You need to display each character as a text object in the right location with appropriate rotation using a loop, add a blank space to separate the head and tail. Set a font for the text object.
 
 In Java, the trigonometric functions like sin, cos, their parameter is an angle in radians, following normal mathematical convention, i.e, positive angle runs anticlockwise while negative angle runs clockwise. So, to distribute n characters evenly around a circle clockwise, negative angles are convenient. If we start the text at the left side of the circle with radius $r$, then the coordinates of the location of a character with angle $θ$ away from west can be calculated as below:
 
@@ -52,6 +52,9 @@ The defect comes from:
 * The location of a character is its bottom-left corner
 * The rotation pivot point is the center of the character
 
-10% Extra credits are given for fixing the defect:
+
+Extra credits
+---
+* 10% Extra credits are given for fixing the defect:
 
 ![fixed](./images/extra.png)
