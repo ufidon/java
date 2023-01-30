@@ -117,7 +117,7 @@ For a triangle with three sides of length $a, b, c$ to be valid,
   }
   ```
    * Refer to example [InvalidRadiusException](../demos/demo2/InvalidRadiusException.java)
-1. Design a test class to create three triangles to trigger the exception with the second triangle
+3. Design a test class to create three triangles to trigger the exception with the second triangle
   ```java
   Triangle(3,4,5);
   Triangle(1,2,3);
