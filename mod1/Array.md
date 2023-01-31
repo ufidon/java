@@ -92,7 +92,7 @@ Popular array processing includes
     // Swap myList[i] with myList[j]
     double temp = myList[i];
     myList[i] = myList[j];
-    myList[j] = myList[i];
+    myList[j] = temp;
   }
   ```
 * Shifting (rotating) elements left

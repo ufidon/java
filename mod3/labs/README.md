@@ -7,7 +7,7 @@ Write a program that displays three cards randomly selected from a deck of 52, a
 
 The card image files are named 1.png, 2.png, . . . , 52.png and stored in the [image/card directory](https://github.com/ufidon/java/tree/main/bookmedia/image/card). All three cards are distinct and selected randomly. 
 
-HINT: You can select random cards by storing the numbers 1–52 to an array list, perform a random shuffle introduced in textbook [Section 11.12](../../mod1/Array.md), and use the first three numbers in the array list as the file names for the image.
+HINT: You can select random cards by storing the numbers 1–52 to an array list, perform a random shuffle introduced in textbook [Section 11.12](../../mod1/Array.md) or use [Collections.shuffle()](https://devdocs.io/openjdk~11/java.base/java/util/collections), and use the first three numbers in the array list as the file names for the image.
 
 
 ## Q2: Display a string around a circle (textbook Q14.5)
