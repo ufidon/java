@@ -23,7 +23,7 @@ To beautify the previous investment calculator, you may
 * (5%) Customize the font and color of all labels and the button
 * (3%) Add an background image
 
-![pretty calculator](./images/pretty.png)
+![pretty calculator](./images/cute.png)
 
 # References
 * [JavaFX Label](https://jenkov.com/tutorials/javafx/label.html)
