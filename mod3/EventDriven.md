@@ -780,30 +780,46 @@ Animate a rectangle moving along the circle
 ![path transition](./images/pathtrans.gif)
 
 ```java
-import javafx.animation.*;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Line;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class FlagRisingAnimation extends Application {
+public class PathTransitionDemo extends Application {
   @Override
   public void start(Stage primaryStage) {
     Pane pane = new Pane();
     
-    ImageView imageView = new ImageView("us.gif");
-    pane.getChildren().add(imageView);
+    Rectangle rectangle = new Rectangle (0, 0, 25, 50);
+    rectangle.setFill(Color.ORANGE);
     
-    PathTransition pt = new PathTransition(Duration.millis(10000),
-      new Line(100, 200, 100, 0), imageView);
+    Circle circle = new Circle(125, 100, 50);
+    circle.setFill(Color.WHITE);
+    circle.setStroke(Color.RED);
+    
+    pane.getChildren().add(circle);
+    pane.getChildren().add(rectangle);
+    
+    PathTransition pt = new PathTransition();
+    pt.setDuration(Duration.millis(4000));
+    pt.setPath(circle);
+    pt.setNode(rectangle);
+    pt.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
     pt.setCycleCount(Timeline.INDEFINITE);
+    pt.setAutoReverse(true);
     pt.play();
     
+    circle.setOnMousePressed(e -> pt.pause());
+    circle.setOnMouseReleased(e -> pt.play());
+    
     Scene scene = new Scene(pane, 250, 200);
-    primaryStage.setTitle("FlagRisingAnimation");
+    primaryStage.setTitle("PathTransitionDemo");
     primaryStage.setScene(scene);
     primaryStage.show();
   }
