@@ -1,5 +1,10 @@
 # JavaFX UI Controls and Multimedia
 
+Motivations
+---
+- A graphical user interface (GUI) makes a system user-friendly and easy to use 
+- The GUI components in JavaFX are very flexible and versatile
+  - can be used to create a wide assortment of useful user interfaces
 
 
 
@@ -10,3 +15,4 @@
 * [JavaFX API documentation](https://openjfx.io/javadoc/11/)
   * [JavaFX Documentation Project](https://fxdocs.github.io/docs/html5/)
 * [JavaFX 11: IllegalAccessError when creating Label](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label)
+* [Where to put resource files in JavaFX](https://edencoding.com/where-to-put-resource-files-in-javafx/)
