@@ -17,9 +17,11 @@ Online resources and examples
 2. Download and install IDE
    1. Download and install [Visual Studio Code](https://code.visualstudio.com/) **Recommended!**
       1. Install [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
-   2. Download and install [Apache Netbeans](https://netbeans.apache.org/)
-   3. Download and install [Eclipse](https://www.eclipse.org/downloads/)
-   4. Download and install [InteliJ IDEA](https://www.jetbrains.com/idea/)
+      2. [demo video](https://youtu.be/oWIGI9AUYqU)
+   2. _optional IDE_
+      1. Download and install [Apache Netbeans](https://netbeans.apache.org/)
+      2. Download and install [Eclipse](https://www.eclipse.org/downloads/)
+      3. Download and install [InteliJ IDEA](https://www.jetbrains.com/idea/)
 3. IDE startup
    1. [Netbeans startup instructions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_11/cw/content/supplements/Supplement2dNetBeansStartup.pdf)
    2. [Eclipse Startup Instructions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_11/cw/content/supplements/Supplement2fEclipseStartup.pdf)
