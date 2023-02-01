@@ -12,7 +12,7 @@ Frequently Used UI Controls
 
 ![popular controls](./images/controls.png)
 
-Control reference variables naming prefix convention
+- Control reference variables naming prefix convention
 
 | control       | prefix |
 | ------------- | ------ |
@@ -29,7 +29,7 @@ Control reference variables naming prefix convention
 | Slider        | sld    |
 | MediaPlayer   | mp     |
 
-Recommended naming style: **controlname+number**, ex. label6
+- Recommended naming style: **controlname+number**, ex. label6
 
 
 [Labeled](https://openjfx.io/javadoc/11/javafx.controls/javafx/scene/control/Labeled.html)
