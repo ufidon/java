@@ -1,5 +1,7 @@
 # Review for exam 1
 
+Covers module 1 & 2, i.e. Chapter 1-7, 9-12.
+
 [Math functions](https://devdocs.io/openjdk~11/java.base/java/lang/math)
 ---
 
