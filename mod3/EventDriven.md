@@ -205,7 +205,7 @@ Define a listener class
 * It is appropriate to define it as
   * an *inner class* as a member inside the frame (outer) class
   * an *anonymous* inner class
-  * *lambda* expressions
+* *lambda* expressions
 
 
 Inner class
@@ -320,7 +320,7 @@ public class AnonymousHandlerDemo extends Application {
 ```
 
 
-Simplifying Event Handing Using Lambda Expressions
+Simplifying Event Handling Using Lambda Expressions
 ---
 * Lambda expressions can be viewed as an anonymous method with a concise syntax
   ```java
