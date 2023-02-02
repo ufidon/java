@@ -708,8 +708,9 @@ Media
 - [MediaPlayer](https://openjfx.io/javadoc/11/javafx.media/javafx/scene/media/MediaPlayer.html) class plays and controls the media
 - [MediaView](https://openjfx.io/javadoc/11/javafx.media/javafx/scene/media/MediaView.html) class provides a view of the Media being played by a MediaPlayer
 
+![media](./images/tears.png)
 
-
+* [source code](./demos/MediaDemo.java)
 
 # Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
@@ -719,3 +720,8 @@ Media
   * [JavaFX Documentation Project](https://fxdocs.github.io/docs/html5/)
 * [JavaFX 11: IllegalAccessError when creating Label](https://stackoverflow.com/questions/54291958/javafx-11-illegalaccesserror-when-creating-label)
 * [Where to put resource files in JavaFX](https://edencoding.com/where-to-put-resource-files-in-javafx/)
+* videos for testing
+  * [BigBuckBunny](http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4)
+  * [11 Sample video files](https://www.learningcontainer.com/mp4-sample-video-files-download/)
+  * [videos for testing](https://gist.github.com/jsturgis/3b19447b304616f18657)
+* [ffmpeg](https://ffmpeg.org/ffmpeg.html)
