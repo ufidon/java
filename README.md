@@ -28,6 +28,27 @@ Online resources and examples
    1. [Netbeans startup instructions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_11/cw/content/supplements/Supplement2dNetBeansStartup.pdf)
    2. [Eclipse Startup Instructions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_11/cw/content/supplements/Supplement2fEclipseStartup.pdf)
 
+
+## Clean installation
+If you have other Java JDK or old Visual Studio code polluted your system rendering you unable to run JavaFX programs, you may clean them as below:
+
+- Clean Visual studio code
+  - Uninstall visual studio code
+    - delete the Code folder inside folder "%userprofile%\AppData\Roaming"
+    - delete folder "%userprofile%\\.vscode"
+    - for example, on Mike's computer:
+    ```
+     1. Go to where Visual Studio Code is installed and invoke 'uninst000.exe'. In Mike's case it is installed in C:\Users\Mike\AppData\Local\Programs\Microsoft VS Code
+     2. Delete directory C:\Users\Mike\AppData\Roaming\Code
+     3. Delete directory C:\Users\Mike\.vscode
+    ```
+- Clean JDK
+  - Uninstall any JDK or JRE from your system
+   - delete JAVA_HOME environment variable
+   - delete any value contains java in your user and system PATH variables
+
+Now you have a clean environment. Follow the [demo video](https://youtu.be/oWIGI9AUYqU) to reinstall JDK FX and Visual Studio Code.
+
 ## Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
   * [Student resources](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/)
