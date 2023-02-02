@@ -40,7 +40,7 @@ System.out.println(d1.getTime());
 - [Java Date class](https://devdocs.io/openjdk~11/java.base/java/util/date)
 
 
-What of the following function can change the value of a passing variable?
+Which of the following function can change the value of a passing variable?
 ---
 ```java
 void changeMe(int i){ i=10; }
@@ -50,7 +50,7 @@ void changeMe(Date date){ date.setTime(332211); }
 
 Demonstrate variable scopes with examples
 ---
-
+- Can you define two variables with the same name inside nested scopes within a function?
 
 How to use keywords this and super?
 ---
