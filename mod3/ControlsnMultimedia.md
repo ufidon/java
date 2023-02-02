@@ -697,6 +697,17 @@ Case Study: Bounce Ball
 Case Study:  TicTacToe
 ---
 
+![tic tac toe](./images/tictactoe.gif)
+
+* [source code](./demos/TicTacToe.java)
+
+
+Media
+---
+- [Media](https://openjfx.io/javadoc/11/javafx.media/javafx/scene/media/Media.html) class obtains the source of the media
+- [MediaPlayer](https://openjfx.io/javadoc/11/javafx.media/javafx/scene/media/MediaPlayer.html) class plays and controls the media
+- [MediaView](https://openjfx.io/javadoc/11/javafx.media/javafx/scene/media/MediaView.html) class provides a view of the Media being played by a MediaPlayer
+
 
 
 
