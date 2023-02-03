@@ -1,0 +1,41 @@
+root {
+    display: block;
+}
+
+.root {
+    -fx-background-image: url("城门.png");
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+    -fx-effect: dropshadow(gaussian, yellow, 0, 0, 0, 1);
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-family: "Noto Sans CJK SC";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(lightblue, darkblue);
+    -fx-effect: dropshadow(three-pass-box, gold, 5, 0.0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(lightgreen, green);
+}
+/* 不支持万国码命名 */
+#idTitle {
+    -fx-font-size: 24px;
+    -fx-font-family: "Noto Sans CJK SC";
+    -fx-fill: blue;
+    -fx-effect: innershadow(three-pass-box, red, 6, 0.0, 0, 2);
+}
+
+#idState {
+    -fx-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(gaussian, yellow, 0, 0, 0, 1);
+}
