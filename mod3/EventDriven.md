@@ -661,7 +661,7 @@ public class KeyEventDemo extends Application {
 Practice
 ---
 * Change text.setOnKeyPressed to scene.setOnKeyPressed
-* Change setOnKeyPressed to setOnKeyPressed, setOnKeyTyped
+* Change setOnKeyPressed to setOnKeyReleased, setOnKeyTyped
 * Uncomment the line: 
   ```java
   System.out.println(e.getCode() + ":" + e.getText());
