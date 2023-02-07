@@ -14,7 +14,7 @@ $$futureValue = investmentAmount × (1 + monthlyInterestRate)^{years×12}$$
 
 Use text fields for the investment amount, number of years, and annual interest rate. Display the future amount in a text field when the user clicks the Calculate button, as shown here.
 
-![investment-value calculator](./images/calculator.png)
+![investment-value calculator](./images/InvestmentCalculator.png)
 
 
 ## Extra credits (10%)
@@ -23,7 +23,7 @@ To beautify the previous investment calculator, you may
 * (5%) Customize the font and color of all labels and the button
 * (3%) Add an background image
 
-![pretty calculator](./images/cute.png)
+![pretty calculator](./images/etra.png)
 
 # References
 * [JavaFX Label](https://jenkov.com/tutorials/javafx/label.html)
