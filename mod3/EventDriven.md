@@ -656,7 +656,7 @@ public class KeyEventDemo extends Application {
 ```
 
 * scene is a top-level container for receiving key events
-  *  need to invoke scene.requestFocus()
+  * No need to invoke scene.requestFocus()
 
 Practice
 ---
