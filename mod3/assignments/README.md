@@ -11,6 +11,7 @@ Check the boundary to prevent the ball from moving out of sight completely.
 Write a program that calculates the future value of an investment at a given interest rate for a specified number of years. The formula for the calculation is
 
 $$futureValue = investmentAmount × (1 + monthlyInterestRate)^{years×12}$$
+
 $$monthlyInterestRate = annuallyInterestRate \div 12$$
 
 Use text fields for the investment amount, number of years, and annual interest rate (without %). Display the future amount in a text field when the user clicks the Calculate button, as shown here.
