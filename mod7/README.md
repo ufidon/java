@@ -1,5 +1,6 @@
 # Module 7: Database programming
-Chapter 34-35
+- [Chapter 34](../bookextra/ch34.pdf)
+- [Chapter 35](../bookextra/ch35.pdf)
 
 
 # Reference textbooks

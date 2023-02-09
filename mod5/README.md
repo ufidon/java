@@ -1,5 +1,6 @@
 # Module 5: Multithreading and parallel programming
-Chapter 32
+[Chapter 32](../bookextra/ch32.pdf)
+
 
 
 # Reference textbooks

@@ -1,5 +1,5 @@
 # Module 6: Network programming
-Chapter 33
+[Chapter 33](../bookextra/ch33.pdf)
 
 
 
