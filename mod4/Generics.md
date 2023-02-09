@@ -50,7 +50,7 @@ System.out.println(c.compareTo("red")); // compile error
   list.add(3.0); // 3.0 is automatically converted to new Double(3.0)
   Double doubleObject = list.get(0); // No casting is needed
   double d = list.get(1); // Automatically converted to double
-  // Auto boxing and unboxsing happened implicitly
+  // Auto boxing and unboxing happened implicitly
   ```
 
 
@@ -113,7 +113,7 @@ public class GenericMethodDemo {
     Integer[] integers = {1, 2, 3, 4, 5};
     String[] strings = {"London", "Paris", "New York", "Austin"};
 
-    // compare the generic static method instatiation with
+    // compare the generic static method instantiation with
     // generic class instantiation
     GenericMethodDemo.<Integer>print(integers); // compare with GenericStack<String> cities
     GenericMethodDemo.<String>print(strings);
@@ -247,6 +247,7 @@ public class GenericSort {
 Raw Types and Backward Compatibility
 ---
 - A generic type used without a type parameter is called a raw type
+  - raw type demo
   ```java
   // raw type
   ArrayList list = new ArrayList(); 
@@ -255,22 +256,255 @@ Raw Types and Backward Compatibility
   ```
 - Using raw types allows for backward compatibility with earlier versions of Java
   - but, raw types are unsafe
+  ```java
+  public class Max {
+      public static void main(String[] args) {
+          // no compile error
+          Comparable c = max("Hello", 2023); // runtime error
+          System.out.println(c);
+      }
+      public static Comparable max(Comparable o1, Comparable o2) {
+        // compile with -Xlint:unchecked to show the warning
+          if (o1.compareTo(o2) > 0)
+              return o1;
+          else
+              return o2;
+      }
+  }
+  ```
 
-```java
-public class Max {
+
+Avoiding Unsafe Raw Types 
+---
+- [proper usage of generic types](./demos/TestArrayListNew.java)
+  ```java
+  // Use 
+  new ArrayList<ConcreteType>()
+  // Instead of 
+  new ArrayList();
+  ```
+- Make Max safe
+  ```java
+  public class Max {
     public static void main(String[] args) {
-        // no compile error
-        Comparable c = max("Hello", "2023"); // runtime error
+        Comparable c = max("Hello", 2023); // compile error
         System.out.println(c);
     }
-    public static Comparable max(Comparable o1, Comparable o2) {
+    public static <E extends Comparable<E>> E max(E o1, E o2) {
         if (o1.compareTo(o2) > 0)
             return o1;
         else
             return o2;
     }
-}
-```
+  }
+  ```
+- No compile error but with warning
+  ```java
+  public class TestStack {
+    public static void main(String[] args) {
+      // compile with -Xlint:unchecked to show the warning
+      GenericStack stack;
+      stack = new GenericStack<String>();
+      stack.push("Welcome to Java");
+      stack.push(Integer.valueOf(2));
+      System.out.print(stack);
+    }
+  }
+  ```
+
+
+Wildcard Generic Types
+---
+- specify a range for a generic type
+  ```java
+  // Why do we need wildcard generic types?
+  public class WildCardNeedDemo {
+    public static void main(String[] args) {
+      GenericStack<Integer> intStack = new GenericStack<>();
+      intStack.push(1); // 1 is autoboxed into new Integer(1)
+      intStack.push(2);
+      intStack.push(-2);
+
+      // compile error: GenericStack<Integer> is NOT a subtype of GenericStack<Number>
+      System.out.print("The max number is " + max(intStack));
+    }
+ 
+    public static Number max(GenericStack<Number> stack) 
+    {
+    // practice: change the above line to be
+    // public static double max(GenericStack<? extends Number> stack) 
+      double max = stack.pop().doubleValue(); // initialize max
+
+      while (!stack.isEmpty()) {
+        double value = stack.pop().doubleValue();
+        if (value > max)
+          max = value;
+      }
+
+      return max;
+    }
+  }
+  ```
+- three forms
+  ```java
+  // 1- unbounded wildcards: ?, the same as ? extends Object.
+  // AnyWildCardDemo.java
+  public class AnyWildCardDemo {
+    public static void main(String[] args ) {
+      GenericStack<Number> intStack = new GenericStack<>();
+      intStack.push(1);
+      intStack.push(2.3);
+      intStack.push(-2/11.);
+      intStack.push(-2/11);
+
+      print(intStack);
+    }
+
+    public static void print(GenericStack<?> stack) {
+      while (!stack.isEmpty()) {
+        System.out.print(stack.pop() + " ");
+      }
+    }
+  }
+
+  // 2- bounded wildcards: ? extends T, represents T or a subtype of T.
+  // BoundedTypeDemo.java
+  public class BoundedTypeDemo {
+    public static void main(String[] args ) {
+      Double d = Double.valueOf(2.3);
+      Float f = Float.valueOf(2.7f); // Practice: change 2.7f to 2.7
+
+      System.out.println("Same integer value? " +
+        equalIntValue(d, f));
+    }
+
+    public static <E extends Number> boolean equalIntValue(
+        E object1, E object2) {
+      return object1.intValue() == object2.intValue();
+    }
+  }
+
+  // 3- lower bound wildcards: ? super T, denotes T or a supertype of T
+  // SuperWildCardDemo.java
+  public class SuperWildCardDemo {
+    public static void main(String[] args) {
+      GenericStack<String> stack1 = new GenericStack<String>();
+      GenericStack<Object> stack2 = new GenericStack<Object>();
+      stack2.push("Java");
+      stack2.push(2);
+      stack1.push("Sun");
+      add(stack1, stack2);
+      AnyWildCardDemo.print(stack2);
+    }
+
+    public static <T> void add(GenericStack<T> stack1,
+        GenericStack<? super T> stack2) {
+      while (!stack1.isEmpty())
+        stack2.push(stack1.pop());
+    }
+  }
+  ```
+- Generic Types and Wildcard Types
+
+![Generic Types and Wildcard Types](./images/typeandwild.png)
+
+
+Erasure and Restrictions on Generics
+---
+- Generics are implemented using *type erasure*
+- Generic type information is used to compile the code
+  - it is erased afterwards so not available at runtime
+  - this enables the generic code to be backward-compatible with the legacy code that uses raw types
+    - a generic class is shared by all its instances regardless of its actual generic type
+    ```java
+    GenericStack<String> stack1 = new GenericStack<>();
+    GenericStack<Integer> stack2 = new GenericStack<>();
+    // only one class GenericStack loaded into the JVM
+    ```
+- Compile Time Checking
+  ```java
+  // 1. an unbounded generic type is replaced with the Object type
+  ArrayList<String> list = new ArrayList<>();
+  list.add("Oklahoma");
+  String state = list.get(0);
+  // is compiled into 
+  ArrayList list = new ArrayList();
+  list.add("Oklahoma");
+  String state = (String)(list.get(0));
+
+  public static <E> void print(E[] list){
+    for (E e : list) {
+      System.out.print(e+" ");
+    }
+    System.out.println();
+  }
+  // is compiled into 
+  public static void print(Object[] list){
+    for (Object e : list) {
+      System.out.print(e+" ");
+    }
+    System.out.println();
+  }
+
+  // 2. a generic bounded type is replaced with the bounded type
+  public static <E extends Number> boolean equalValue(E n1, E n2){
+    return n1.equals(n2);
+  }
+  // is compiled into
+  public static boolean equalValue(Number n1, Number n2){
+    return n1.equals(n2);
+  }
+
+  // 3. runtime type checking
+  System.out.println(list1 instanceof ArrayList); // => true
+  System.out.println(list2 instanceof ArrayList); // => true
+  list1 instanceof ArrayList<String>; // Wrong! No ArrayList<String> at runtime
+  ```
+
+
+Restrictions on Generics
+---
+- Cannot create an instance of a generic type. (i.e., new E()).
+  ```java
+  E object = new E(); // Wrong! No type E at runtime
+  ```
+- Generic array creation is not allowed. (i.e., new E[100]).
+  ```java
+  E[] elements = new E[capacity]; // Wrong! No type E at runtime
+  // a circumvent
+  E[] elements = (E[])new Object[capacity]; // OK! but casting to (E[]) causes an unchecked compile warning
+
+  ArrayList<String>[] list = new ArrayList<String>[10]; // Wrong! No type ArrayList<String> at runtime
+  // a circumvent
+  ArrayList<String>[] list = (ArrayList<String>[])new ArrayList[10]; // OK! but casting to (ArrayList<String>[]) causes an unchecked compile warning
+  ```
+- A generic type parameter of a class is not allowed in a static context.
+  ```java
+  public class Test<E> {
+    public static void m(E o1) {  // Illegal
+    }
+    public static E o1; // Illegal
+
+    static {
+      E o2; // Illegal
+    }
+  }
+  ```
+- Exception classes cannot be generic.
+  ```java
+  public class MyException<T> extends Exception {   } // illegal! because try-catch needs runtime info
+  ```
+
+
+Case Study: Generic Matrix Class
+---
+- [GenericMatrix](./demos/GenericMatrix.java)
+- [IntegerMatrix](./demos/IntegerMatrix.java)
+  - [TestIntegerMatrix](./demos/TestIntegerMatrix.java)
+- [RationalMatrix](./demos/RationalMatrix.java)
+  - [TestRationalMatrix](./demos/TestRationalMatrix.java)
+
+
 
 # Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
@@ -280,3 +514,4 @@ public class Max {
 * _old JDK documentations_
   * [Java 2 SDK, Standard Edition](https://nick-lab.gs.washington.edu/java/jdk1.4.2/index.html)
   * [JDK 5.0 Documentation](https://web.mit.edu/java_v1.5.0_22/distrib/share/docs/index.html)
+* [How do I compile with -Xlint:unchecked?](https://stackoverflow.com/questions/8215781/how-do-i-compile-with-xlintunchecked)
