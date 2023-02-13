@@ -1029,3 +1029,4 @@ Case Study: Bouncing Ball
 * [Handling JavaFX Events](https://docs.oracle.com/javafx/2/events/processing.htm)
 * [Make GIF in Linux with one simple command](https://averagelinuxuser.com/make-gif-in-linux-with-one-simple-command/)
 * [ScreenToGif](https://www.screentogif.com/)
+* [generating a MouseEvent in JavaFX](https://stackoverflow.com/questions/11552176/generating-a-mouseevent-in-javafx)
