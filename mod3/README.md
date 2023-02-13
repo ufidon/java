@@ -1,9 +1,10 @@
 # Module 3: JavaFX GUI programming
-Chapter 14-16
+Chapter 14-16, 31
 
 * [JavaFX Basics](./JavaFXBasics.md)
 * [Event-Driven Programming and Animations](./EventDriven.md)
 * [JavaFX UI Controls and Multimedia](./ControlsnMultimedia.md)
+* [Advanced JavaFX and FXML](./AdvancedJavaFX.md)
 
 
 # Reference textbooks
