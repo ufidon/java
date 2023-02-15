@@ -496,6 +496,32 @@ public class ThreadCooperation {
 ```
 
 
+Java’s Built-in Monitors (Optional)
+---
+- Old features prior to Java 5
+  - A monitor is an object with mutual exclusion and synchronization capabilities
+  - Only one thread can execute a method at a time in the monitor
+  - A thread enters the monitor by acquiring a lock on the monitor and exits by releasing the lock
+  - Any object can be a monitor
+    - An object becomes a monitor once a thread locks it
+  - Locking is implemented using the synchronized keyword on a method or a block
+    - A thread must acquire a lock before executing a synchronized method or block
+    - A thread can wait in a monitor if the condition is not right for it to continue executing in the monitor
+- Locks and conditions are more powerful and flexible than the built-in monitor
+
+
+wait(), notify(), and notifyAll()
+---
+- must be called in a synchronized method or a synchronized block on the calling object of these methods
+  - Otherwise, an IllegalMonitorStateException would occur
+- wait() lets the thread wait until some condition occurs
+  - When wait() is invoked, it pauses the thread and simultaneously releases the lock on the object 
+    - When the thread is restarted after being notified, the lock is automatically reacquired
+  - When it occurs, you can use the notify() or notifyAll() methods to notify the waiting threads to resume normal execution
+  - The notifyAll() method wakes up all waiting threads
+  - while notify() picks up only one thread from a waiting queue
+- The wait(), notify(), and notifyAll() methods on an object are analogous to the await(), signal(), and signalAll() methods on a condition
+
 
 
 # Reference textbooks
