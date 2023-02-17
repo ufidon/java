@@ -495,6 +495,7 @@ public class ThreadCooperation {
 }
 ```
 
+---
 
 Java’s Built-in Monitors (Optional)
 ---
@@ -509,6 +510,23 @@ Java’s Built-in Monitors (Optional)
     - A thread can wait in a monitor if the condition is not right for it to continue executing in the monitor
 - Locks and conditions are more powerful and flexible than the built-in monitor
 
+```java
+synchronized (anObject){
+  try{
+    while(!condition){
+      anObject.wait(); // blocked until receive notification
+    }
+  }
+  catch (InterruptedException ex){
+    ex.printStackTrace();
+  }
+}
+
+synchronized (anObject){
+  // When condition becomes true
+  anObject.notify(); // anObject.notifyAll();
+}
+```
 
 wait(), notify(), and notifyAll()
 ---
@@ -521,6 +539,138 @@ wait(), notify(), and notifyAll()
   - The notifyAll() method wakes up all waiting threads
   - while notify() picks up only one thread from a waiting queue
 - The wait(), notify(), and notifyAll() methods on an object are analogous to the await(), signal(), and signalAll() methods on a condition
+
+
+
+Case study: producer/consumer
+---
+- Using two conditions
+  - notFull
+  - notEmpty
+  - [source code](./demos/ConsumerProducer.java)
+- Using Blocking Queues
+  - [source code](./demos/ConsumerProducerUsingBlockingQueue.java)
+
+```java
+// task for producing an int
+while(count == CAPACITY)
+  notFull.await();
+// add an int to the buffer
+notEmpty.signal();
+
+// task for consuming an int
+while(count == 0)
+  notEmpty.await();
+// delete an int from the buffer
+notFull.signal();
+```
+
+
+[Blocking Queues](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/blockingqueue)
+---
+- causes a thread to block when you try to add an element to a full queue 
+  - or to remove an element from an empty queue
+- Three concrete blocking queues defined in package java.util.concurrent 
+  - [ArrayBlockingQueue](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/arrayblockingqueue)
+    - implements a blocking queue using an array
+  - [LinkedBlockingQueue](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/linkedblockingqueue)
+    - implements a blocking queue using a linked list
+  - [PriorityBlockingQueue](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/priorityblockingqueue)
+  - The last two could be bounded or unbounded
+
+
+[Semaphores](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/semaphore)
+---
+- used to restrict the number of threads that access a shared resource
+- Before accessing the resource, a thread must acquire a permit from the semaphore
+- After finishing with the resource, the thread must return the permit back to the semaphore
+
+```java
+// A thread accessing a shared resource
+// Acquire a permit from a semaphore, wait if the permit is not available
+semaphore.acquire();
+// Access the resource
+// Release the permit to the semaphore
+semaphore.release();
+```
+
+
+Deadlock
+---
+- caused when two or more threads need to acquire the locks on several shared objects
+  - each thread has the lock on one of the objects and is waiting for the lock on the other object
+  - these threads wait for each other to release in order to get the lock, and neither can continue to run
+
+```java
+// thread 1 waits for thread 2 to release the lock on object 2
+synchronized (object1){
+  // do something here
+  synchronized (object2){
+    // do something here
+  }
+}
+
+// thread 2 waits for thread 1 to release the lock on object 1
+synchronized (object2){
+  // do something here
+  synchronized (object1){
+    // do something here
+  }
+}
+```
+
+
+Preventing Deadlock
+---
+- resource ordering
+  - assign an order on all the objects whose locks must be acquired 
+  - ensure that each thread acquires the locks in that order
+- resource yielding
+  - one or more threads yield their locked resources for a random amount of time
+
+
+Thread States
+---
+- five states: New, Ready, Running, Blocked, or Finished
+
+![five thread states](./images/threadstates.png)
+
+
+[Synchronized Collections](https://devdocs.io/openjdk~11/java.base/java/util/collections)
+---
+- The classes in the Java Collections Framework are not thread-safe, i.e., 
+  - their contents may be corrupted if they are accessed and updated concurrently by multiple threads
+- protected by locking the collection or using synchronized collections
+- six static methods are provided for wrapping a collection into
+  - synchronization wrapper implemented using the synchronized keyword
+  - replace old Vector, Stack and Hashtable with ArrayList, LinkedList and Map respectively
+- the iterator is fail-fast by throwing java.util.ConcurrentModificationException
+  - avoid by creating a synchronized collection object and acquire]ing a lock on the object when traversing it
+  ```java
+  Set mySet = Collections.synchronizedSet(new HashSet());
+  synchronized(mySet){
+    Iterator ite = mySet.iterator();
+    while(ite.hasNext()){
+      System.out.println(ite.next());
+    }
+  }
+  ```
+
+
+The Fork/Join Framework
+---
+- utilizes multicore processors for parallel programming
+- a fork can be viewed as an independent task that runs on a thread
+  - a task is defined as [ForkJoinTask](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/forkjointask)
+  - a task is executed in an instance of [ForkJoinPool](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/forkjoinpool)
+
+![fork join](./images/forkjoin.jpg)
+
+
+Examples
+---
+- [ParallelMergeSort](./demos/ParallelMergeSort.java)
+- [ParallelMax](./demos/ParallelMax.java)
 
 
 
