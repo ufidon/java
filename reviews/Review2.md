@@ -93,6 +93,7 @@ Three popular ways of defining a JavaFX event handler
   - inner class
   - anonymous inner class
   - lambda expression
+- how do you register a JavaFX event handler?
 
 
 Are the following four lambda expressions all equivalent?
