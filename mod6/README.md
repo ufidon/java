@@ -249,7 +249,8 @@ while (true) {
 | --------------------------- | ------------------------------------------------------------- |
 | ![server](./images/mcs.png) | ![client](./images/mc1.png) <br/> ![client](./images/mc2.png) |
 
-
+- source code
+  - [MultiThreadServer](./demos/MultiThreadServer.java)
 
 Case study: Passing Objects in Network Programs
 ---
