@@ -245,12 +245,109 @@ while (true) {
 }
 ```
 
-| server                           | client                           |
-| -------------------------------- | -------------------------------- |
+| server                      | client                                                        |
+| --------------------------- | ------------------------------------------------------------- |
 | ![server](./images/mcs.png) | ![client](./images/mc1.png) <br/> ![client](./images/mc2.png) |
 
 
 
+Case study: Passing Objects in Network Programs
+---
+- A program can send and receive objects from another program
+  - using ObjectOutputStream and ObjectInputStream on socket streams
+  - the objects must be serializable
+
+![passing student address](./images/student.png)
+
+| server                                                                      | client                                        |
+| --------------------------------------------------------------------------- | --------------------------------------------- |
+| > java StudentServer <br/>Server started<br/>A new student object is stored | ![student client](./images/studentclient.png) |
+
+- source code
+  - [StudentAddress](./demos/StudentAddress.java)
+  - [StudentServer](./demos/StudentServer.java)
+  - [StudentClient](./demos/StudentClient.java)
+
+
+Case Study: Distributed TicTacToe Games
+---
+-  enables two players to play the tic-tac-toe game on the Internet
+-  using multithreads and networking with socket streams
+-  The server creates a server socket and accepts connections from every two players to form a session 
+   -  Each session is a thread that communicates with the two players and determines the status of the game
+- The client is responsible for interacting with the players
+  - It creates a user interface with nine cells and displays the game title and status
+  - It does not determine the game status (win or draw)
+  - it simply passes the moves to the server and receives the game status from the server
+
+![distributed TicTacToe game](./images/dtictactoe.png)
+
+| server                                | clients                                                                              |
+| ------------------------------------- | ------------------------------------------------------------------------------------ |
+| ![TicTacToe server](./images/t3s.png) | ![TicTacToe player1](./images/t3p1.png)<br/> ![TicTacToe player2](./images/t3p2.png) |
+
+- source code
+  - [TicTacToeServer](./demos/TicTacToeServer.java)
+  - [TicTacToeClient](./demos/TicTacToeClient.java)
+  - [TicTacToeConstants](./demos/TicTacToeConstants.java)
+
+---
+
+Stream Socket vs. Datagram Socket  
+---
+- Stream Socket
+  - A dedicated point-to-point channel between a client and server
+  - Use TCP (Transmission Control Protocol) for data transmission
+  - Lossless and reliable
+  - Sent and received in the same order
+- Datagram Socket
+  - No dedicated point-to-point channel between a client and server
+  - Use UDP (User Datagram Protocol) for data transmission
+  - May lose data and not 100% reliable
+  - Data may not be received in the same order as sent
+
+
+[DatagramPacket](https://devdocs.io/openjdk~11/java.base/java/net/datagrampacket)
+---
+- represents a datagram packet
+- used to implement a connectionless packet delivery service
+- routed based solely on packet information
+
+
+[DatagramSocket](https://devdocs.io/openjdk~11/java.base/java/net/datagramsocket)
+---
+- represents a socket for sending and receiving datagram packets
+  - is the sending or receiving point for a packet delivery service
+- Each packet sent or received on a datagram socket is individually addressed and routed
+- Multiple packets sent from one machine to another 
+  - may be routed differently
+  - may arrive in any order
+
+```java
+// 1. Create a server DatagramSocket
+DatagramSocket ds = DatagramSocket(port);
+// 2. Create a client DatagramSocket
+DatagramSocket dc = DatagramSocket();
+// 3. send data after filling in a DatagramPacket with the Internet address and port number for the receiver
+// invoke the send(packet) method on a DatagramSocket
+dc.send(packet);
+// 4. receive data with an empty packet and invoke the receive(packet) method on a DatagramSocket
+ds.receive(packet)
+```
+
+
+Datagram Programming
+---
+- different from stream socket programming in the sense that 
+  - there is no concept of a ServerSocket for datagrams
+- Both client and server use DatagramSocket to send and receive packets
+- Source code
+  - [DatagramServer](./demos/DatagramServer.java)
+  - [DatagramClient](./demos/DatagramClient.java)
+
+| server                              | client                              |
+| ----------------------------------- | ----------------------------------- |
+| ![datagram server](./images/ds.png) | ![datagram client](./images/dc.png) |
 
 # Reference textbooks
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
