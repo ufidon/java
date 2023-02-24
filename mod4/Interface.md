@@ -178,7 +178,7 @@ public class TestCalendar {
 }
 ```
 
-## Interaces
+## Interfaces
 
 * An interface is for defining common behavior for classes (including unrelated classes)
   * For example, specify that the objects are comparable, edible, and/or cloneable.

@@ -281,10 +281,10 @@ public class TestObjectIO {
 The [Serializable](https://devdocs.io/openjdk~11/java.base/java/io/serializable) Interface
 ---
 * a marker interface without methods
-* Not all objects can be written to an output stream 
-* Objects that can be written to an object stream is said to be serializable 
+* objects that can be written to an object stream is said to be serializable 
+  * not all objects can be written to an output stream
 * A serializable object is an instance of the java.io.Serializable interface 
-  * So the class of a serializable object must implement Serializable
+  * so the class of a serializable object must implement Serializable
   * an instance of Serializable that contains non-serializable instance data fields can't be serialized
     * use the *transient* keyword to mark these data fields to tell the JVM to ignore these fields when writing the object to an object stream
 
@@ -338,9 +338,10 @@ public class TestObjectStreamForArray {
 
 Random Access Files
 ---
-* the [RandomAccessFile](https://devdocs.io/openjdk~11/java.base/java/io/randomaccessfile) class to allow a file to be read from and write to at random locations
-* input/output streams are read-only/write-only streams 
-  * The external files of these streams are sequential files 
+* the [RandomAccessFile](https://devdocs.io/openjdk~11/java.base/java/io/randomaccessfile) class 
+  * allows a file to be read from and write to at random locations
+* but input/output streams are read-only/write-only streams 
+  * the external files of these streams are sequential files 
     * cannot be updated without creating a new file
 
 ![file pointer](./images/filepointer.png)
