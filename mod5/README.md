@@ -50,8 +50,11 @@ public class MyTask implements Runnable{
 public class Client{
   public void someMethod(){
     MyTask task = new MyTask(...);
-    Thread thread = new Thread(task);
-    thread.start();
+    Thread thread1 = new Thread(task);
+    thread1.start();
+
+    Thread thread2 = new Thread(task);
+    thread2.start();
   }
 }
 ```
@@ -125,22 +128,59 @@ The [Thread Class](https://devdocs.io/openjdk~11/java.base/java/lang/thread)
 
 - deprecated methods: stop(), suspend(), and resume()
   - inherently unsafe
-  - assign null to a Thread variable to indicate that it is stopped rather than use the stop() method
+- assign null to a Thread variable to indicate that it is stopped rather than use the stop() method
+
+
+
+Practice✏️
+---
+```java
+// 1. yield
+public void run() {
+  for (int i = 1; i <= lastNum; i++) {
+    System.out.print(" " + i);
+    Thread.yield();
+  }
+}
+
+// 2. sleep
+public void run() {
+  try{
+    for (int i = 1; i <= lastNum; i++) {
+      System.out.print(" " + i);
+      if(i >= lastNum/2) Thread.sleep(1);
+    }    
+  }catch(InterruptedException ex){
+  }
+}
+
+// 3. join
+public void run() throws Throwable {
+  Thread t = new Thread(new PrintChar('*', 50));
+  t.start();
+  for (int i = 1; i <= lastNum; i++) {
+    System.out.print(" " + i);
+    if(i == lastNum/2) t4.join(); // join may throw InterruptedException
+  }
+}
+```
 
 
 Thread Priority
 ---
-- Each thread is assigned a default priority of Thread.NORM_PRIORITY. You can 
+- A thread inherits the priority of the thread that spawned it
+- The main thread is assigned a default priority of Thread.NORM_PRIORITY 
   - can be changed with setPriority(int priority)
+  - priority range 1 to 10
 - Some constants for priorities include 
-  - Thread.MIN_PRIORITY 
-  - Thread.MAX_PRIORITY 
-  - Thread.NORM_PRIORITY
+  - Thread.MIN_PRIORITY (1)
+  - Thread.NORM_PRIORITY (5)
+  - Thread.MAX_PRIORITY (10)
 
 
 Animation Using Threads and the [Platform.runLater Method](https://openjfx.io/javadoc/11/javafx.graphics/javafx/application/Platform.html)
 ---
-- JavaFX GUI is run from the JavaFX application thread
+- JavaFX GUI runs from the JavaFX application thread
 - The code in a nonapplication thread cannot update GUI in the application thread
 - Invoking Platform.runLater(Runnable r) tells the system to run this Runnable object in the application thread
 
@@ -176,7 +216,7 @@ public class FlashText extends Application {
               text = "Welcome";
             else
               text = "";
-  
+            
             Platform.runLater(()-> lblText.setText(text));
             
             Thread.sleep(200);
@@ -200,9 +240,20 @@ public class FlashText extends Application {
 ```
 
 
+Practice
+---
+```java
+// Replace 
+Platform.runLater(()-> lblText.setText(text));
+// with 
+lblText.setText(text);
+// Is the animation still working?
+```
+
+
 Thread Pools
 ---
-- ideal to manage the number of tasks executing concurrently
+- execute a large number of tasks efficiently
   - Starting a new thread for each task could limit throughput and cause poor performance
 -  the [Executor interface](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/executor) is used for executing tasks in a thread pool 
    -  the [ExecutorService interface](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/executorservice) for managing and controlling tasks
@@ -213,7 +264,9 @@ import java.util.concurrent.*;
 
 public class ExecutorDemo {
   public static void main(String[] args) {
-    // practice: change 3 to 1 below, what will happen?
+    // practices: 
+    // 1. change 3 to 1 below, what will happen?
+    // 2. replace newFixedThreadPool(3) with newCachedThreadPool(), what will happen?
     ExecutorService executor = Executors.newFixedThreadPool(3);
 
     executor.execute(new PrintChar('a', 100));
@@ -232,7 +285,7 @@ Thread Synchronization
 - A shared resource may be corrupted if it is accessed simultaneously by multiple threads
   - For example, two unsynchronized threads accessing the same bank account may cause conflict
   - This is a common problem known as a *race condition* in multithreaded programs
-  - A class is said to be *thread-safe* if an object of the class does not cause a race condition in the presence of multiple threads
+  - A class is said to be *thread-safe* if its objects do not cause a race condition in multiple threading
 
 ```java
 import java.util.concurrent.*;
@@ -249,7 +302,7 @@ public class AccountWithoutSync {
 
     executor.shutdown();
 
-    while (!executor.isTerminated()) {
+    while (!executor.isTerminated()) {// Wait until all tasks are finished
     }
 
     System.out.println("What is balance? " + account.getBalance());
@@ -645,7 +698,7 @@ Thread States
   - synchronization wrapper implemented using the synchronized keyword
   - replace old Vector, Stack and Hashtable with ArrayList, LinkedList and Map respectively
 - the iterator is fail-fast by throwing java.util.ConcurrentModificationException
-  - avoid by creating a synchronized collection object and acquire]ing a lock on the object when traversing it
+  - avoid by creating a synchronized collection object and acquiring a lock on the object when traversing it
   ```java
   Set mySet = Collections.synchronizedSet(new HashSet());
   synchronized(mySet){
