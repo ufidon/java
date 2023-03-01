@@ -49,8 +49,13 @@ If you have other Java JDK or old Visual Studio code polluted your system render
 
 Now you have a clean environment. Follow the [demo video](https://youtu.be/oWIGI9AUYqU) to reinstall JDK FX and Visual Studio Code.
 
-## Reference textbooks
+## References
 * [Introduction to Java Programming, Comprehensive, 12/E](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#product,isbn=0136519350)
   * [Student resources](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/)
   * [Source code](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/content/source-code.php)
-* [OpenJDK 11.0.11 Documentation](https://devdocs.io/openjdk~11/)
+* Java resources
+  * [OpenJDK 11.0.11 Documentation](https://devdocs.io/openjdk~11/)
+  * [dev.java](https://dev.java/)
+  * [Java SE](https://docs.oracle.com/en/java/javase/index.html)
+  * [Java tutorials](https://docs.oracle.com/javase/tutorial/java/index.html)
+  * [The Java® Language Specification](https://docs.oracle.com/javase/specs/jls/se19/html/index.html)

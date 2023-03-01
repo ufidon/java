@@ -240,14 +240,18 @@ public class FlashText extends Application {
 ```
 
 
-Practice
+Practice✏️
 ---
 ```java
+//-- Exercise 1
 // Replace 
 Platform.runLater(()-> lblText.setText(text));
 // with 
 lblText.setText(text);
 // Is the animation still working?
+
+//-- Exercise 2
+// Put the text modification code in Platform.runLater as well
 ```
 
 
@@ -258,6 +262,8 @@ Thread Pools
 -  the [Executor interface](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/executor) is used for executing tasks in a thread pool 
    -  the [ExecutorService interface](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/executorservice) for managing and controlling tasks
    -  ExecutorService is a subinterface of Executor
+- Executor and ExecutorService objects are created with class [Executors](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/executors)
+
 
 ```java
 import java.util.concurrent.*;
@@ -515,6 +521,7 @@ public class ThreadCooperation {
     public void withdraw(int amount) {
       lock.lock();
       try {
+        // Practice: what will happen if we changed while below to if?
         while (balance < amount) {
           System.out.println("\t\t\tWait for a deposit");
           newDeposit.await();
@@ -567,8 +574,9 @@ Java’s Built-in Monitors (Optional)
 synchronized (anObject){
   try{
     while(!condition){
-      anObject.wait(); // blocked until receive notification
+      anObject.wait(); // release the lock then blocked until receive notification
     }
+    // do its job when condition is true
   }
   catch (InterruptedException ex){
     ex.printStackTrace();
@@ -584,7 +592,7 @@ synchronized (anObject){
 wait(), notify(), and notifyAll()
 ---
 - must be called in a synchronized method or a synchronized block on the calling object of these methods
-  - Otherwise, an IllegalMonitorStateException would occur
+  - Otherwise, an IllegalMonitorStateException will occur
 - wait() lets the thread wait until some condition occurs
   - When wait() is invoked, it pauses the thread and simultaneously releases the lock on the object 
     - When the thread is restarted after being notified, the lock is automatically reacquired
