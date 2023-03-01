@@ -43,15 +43,17 @@ Comparable<Date> c = new Date(); // <Date> - actual concrete type
 System.out.println(c.compareTo("red")); // compile error
 ```
 
-* Example: [generic ArrayList\<E\>](https://devdocs.io/openjdk~11/java.base/java/util/arraylist)
-  ```java
-  ArrayList<Double> list = new ArrayList<>();
-  list.add(5.5); // 5.5 is automatically converted to new Double(5.5)
-  list.add(3.0); // 3.0 is automatically converted to new Double(3.0)
-  Double doubleObject = list.get(0); // No casting is needed
-  double d = list.get(1); // Automatically converted to double
-  // Auto boxing and unboxing happened implicitly
-  ```
+* Generic types must be reference types
+  * Example: [generic ArrayList\<E\>](https://devdocs.io/openjdk~11/java.base/java/util/arraylist)
+    ```java
+    ArrayList<Double> list = new ArrayList<>(); // right
+    // ArrayList<double> list = new ArrayList<>(); // wrong!
+    list.add(5.5); // 5.5 is automatically converted to new Double(5.5)
+    list.add(3.0); // 3.0 is automatically converted to new Double(3.0)
+    Double doubleObject = list.get(0); // No casting is needed
+    double d = list.get(1); // Automatically converted to double
+    // Auto boxing and unboxing happened implicitly
+    ```
 
 
 Declaring Generic Classes and Interfaces 
@@ -134,8 +136,10 @@ public class GenericMethodDemo {
 
 Bounded Generic Type
 ---
+- No inheritance in generic types
+  - Comparable<Circle> is NOT a subtype of Comparable<GeometricObject> 
 - A generic type specified as a subtype of another type is called bounded
-- An unbounded generic type \<E\> is the same as \<E extends Object\>
+  - An unbounded generic type \<E\> is the same as \<E extends Object\>
 
 ```java
 public class BoundedTypeDemo {
@@ -247,6 +251,7 @@ public class GenericSort {
 Raw Types and Backward Compatibility
 ---
 - A generic type used without a type parameter is called a raw type
+  - raw types are unsafe
   - raw type demo
   ```java
   // raw type
@@ -368,21 +373,9 @@ Wildcard Generic Types
   }
 
   // 2- bounded wildcards: ? extends T, represents T or a subtype of T.
-  // BoundedTypeDemo.java
-  public class BoundedTypeDemo {
-    public static void main(String[] args ) {
-      Double d = Double.valueOf(2.3);
-      Float f = Float.valueOf(2.7f); // Practice: change 2.7f to 2.7
-
-      System.out.println("Same integer value? " +
-        equalIntValue(d, f));
-    }
-
-    public static <E extends Number> boolean equalIntValue(
-        E object1, E object2) {
-      return object1.intValue() == object2.intValue();
-    }
-  }
+  public static void print(GenericStack<? extends Object> stack);
+  // is equivalent to
+  public static void print(GenericStack<?> stack);
 
   // 3- lower bound wildcards: ? super T, denotes T or a supertype of T
   // SuperWildCardDemo.java
@@ -402,6 +395,11 @@ Wildcard Generic Types
       while (!stack1.isEmpty())
         stack2.push(stack1.pop());
     }
+    public static <T> void add2(GenericStack<T> stack1,
+        GenericStack<? extends T> stack2) {
+      while (!stack2.isEmpty())
+        stack1.push(stack2.pop());
+    }     
   }
   ```
 - Generic Types and Wildcard Types
@@ -478,7 +476,8 @@ Restrictions on Generics
   // a circumvent
   ArrayList<String>[] list = (ArrayList<String>[])new ArrayList[10]; // OK! but casting to (ArrayList<String>[]) causes an unchecked compile warning
   ```
-- A generic type parameter of a class is not allowed in a static context.
+- A generic type parameter of a class is not allowed in a static context
+  - The class's type parameters are only in scope for instance methods and instance fields
   ```java
   public class Test<E> {
     public static void m(E o1) {  // Illegal
@@ -515,3 +514,4 @@ Case Study: Generic Matrix Class
   * [Java 2 SDK, Standard Edition](https://nick-lab.gs.washington.edu/java/jdk1.4.2/index.html)
   * [JDK 5.0 Documentation](https://web.mit.edu/java_v1.5.0_22/distrib/share/docs/index.html)
 * [How do I compile with -Xlint:unchecked?](https://stackoverflow.com/questions/8215781/how-do-i-compile-with-xlintunchecked)
+* [Static method in a generic class?](https://stackoverflow.com/questions/936377/static-method-in-a-generic-class)
