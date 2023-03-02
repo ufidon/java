@@ -120,7 +120,7 @@ The [Thread Class](https://devdocs.io/openjdk~11/java.base/java/lang/thread)
 | method                    | purpose                                                                 |
 | ------------------------- | ----------------------------------------------------------------------- |
 | Thread.yield()            | causes a thread to pause temporarily and allow other threads to execute |
-| Thread.sleep(miliseconds) | puts the thread to sleep for the specified time in milliseconds         |
+| Thread.sleep(milliseconds) | puts the thread to sleep for the specified time in milliseconds         |
 | join()                    | forces one thread to wait for another thread to finish                  |
 | isAlive()                 | tests whether the thread is currently running                           |
 | interrupt()               | interrupts this thread                                                  |
@@ -605,32 +605,37 @@ wait(), notify(), and notifyAll()
 
 Case study: producer/consumer
 ---
-- Using two conditions
-  - notFull
-  - notEmpty
-  - [source code](./demos/ConsumerProducer.java)
-- Using Blocking Queues
-  - [source code](./demos/ConsumerProducerUsingBlockingQueue.java)
+- A fixed-size buffer is used to store integers with two methods
+  - write(int) to add an int value to the buffer
+  - read() to delete and return an int value from the buffer
+- A lock with two conditions is used to synchronize read and write
+  - notFull: a producer task can't write a full buffer, it will wait for the notFull condition if the buffer is full
+  - notEmpty: a consumer task can't read a empty buffer, it will wait for the notEmpty condition if the buffer is empty
 
-```java
-// task for producing an int
-while(count == CAPACITY)
-  notFull.await();
-// add an int to the buffer
-notEmpty.signal();
+![producer consumer of a buffer](./images/procon.png)
 
-// task for consuming an int
-while(count == 0)
-  notEmpty.await();
-// delete an int from the buffer
-notFull.signal();
-```
+- [source code](./demos/ConsumerProducer.java)
 
 
-[Blocking Queues](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/blockingqueue)
+Practice✏️
 ---
-- causes a thread to block when you try to add an element to a full queue 
+- Run the above [ConsumerProducer](./demos/ConsumerProducer.java) and explain the outputs
+- Remove all code related to the lock and conditions, sleep 0 to 10 milliseconds
+  - let the consumer sleep longer than the producer and run the code
+    - what exception do you get?
+  - let the consumer sleep shorter than the producer and run the code
+    - what exception do you get?
+  - could you get two different types of exceptions?
+    - explain the exceptions
+
+
+[Blocking Queues](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/blockingqueue) (Optional)
+---
+- A blocking queue causes a thread to block when you try to add an element to a full queue 
   - or to remove an element from an empty queue
+- The [BlockingQueue interface](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/blockingqueue) provides two synchronized methods
+  -  put(element: E):void adds an element to the tail of the queue
+  -  take(): E removes an element from the head of the queue
 - Three concrete blocking queues defined in package java.util.concurrent 
   - [ArrayBlockingQueue](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/arrayblockingqueue)
     - implements a blocking queue using an array
@@ -638,31 +643,47 @@ notFull.signal();
     - implements a blocking queue using a linked list
   - [PriorityBlockingQueue](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/priorityblockingqueue)
   - The last two could be bounded or unbounded
+- Rewrite the producer/consumer program using blocking queue
+  - The Producer thread puts an integer into the queue 
+  - the Consumer thread takes an integer from the queue
+  - [source code](./demos/ConsumerProducerUsingBlockingQueue.java)
 
 
-[Semaphores](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/semaphore)
+[Semaphores](https://devdocs.io/openjdk~11/java.base/java/util/concurrent/semaphore) (Optional)
 ---
 - used to restrict the number of threads that access a shared resource
-- Before accessing the resource, a thread must acquire a permit from the semaphore
-- After finishing with the resource, the thread must return the permit back to the semaphore
+  - Before accessing the resource, a thread must acquire a permit from the semaphore
+  - After finishing with the resource, the thread must return the permit back to the semaphore
+- A semaphore is created with a number of permits and an optional fairness policy
+  - A semaphore with just one permit can be used to simulate a mutually exclusive lock
 
 ```java
 // A thread accessing a shared resource
 // Acquire a permit from a semaphore, wait if the permit is not available
 semaphore.acquire();
+// A permit is acquired, the total number of available permits in a semaphore is reduced by 1
 // Access the resource
 // Release the permit to the semaphore
 semaphore.release();
+// a permit is released, the total number of available permits in a semaphore is increased by 1
 ```
+
+
+Practice✏️
+---
+- Rewrite the inner class Account with Semaphore instead of Lock in the two programs above
+  - AccountWithSyncUsingLock
+  - ThreadCooperation
 
 
 Deadlock
 ---
 - caused when two or more threads need to acquire the locks on several shared objects
   - each thread has the lock on one of the objects and is waiting for the lock on the other object
-  - these threads wait for each other to release in order to get the lock, and neither can continue to run
+  - these threads wait for each other to release in order to get the lock, and at least two can't continue to run
 
 ```java
+// The simplest deadlock between two threads
 // thread 1 waits for thread 2 to release the lock on object 2
 synchronized (object1){
   // do something here
@@ -686,8 +707,9 @@ Preventing Deadlock
 - resource ordering
   - assign an order on all the objects whose locks must be acquired 
   - ensure that each thread acquires the locks in that order
-- resource yielding
+- resource yielding or waiting timeout
   - one or more threads yield their locked resources for a random amount of time
+  - don't wait for a lock endlessly but with a timeout
 
 
 Thread States
@@ -695,6 +717,14 @@ Thread States
 - five states: New, Ready, Running, Blocked, or Finished
 
 ![five thread states](./images/threadstates.png)
+
+- The isAlive() method is used to find out the state of a thread. It returns 
+  - true if a thread is in the Ready, Blocked, or Running state; 
+  - false if a thread is new and has not started or if it is finished
+- The interrupt() method interrupts a thread in the following way: 
+  - If a thread is currently in the Ready or Running state, its interrupted flag is set; 
+  - if a thread is currently blocked, it is awakened and enters the Ready state
+    - and a java.lang.InterruptedException is thrown
 
 
 [Synchronized Collections](https://devdocs.io/openjdk~11/java.base/java/util/collections)
@@ -705,10 +735,12 @@ Thread States
 - six static methods are provided for wrapping a collection into
   - synchronization wrapper implemented using the synchronized keyword
   - replace old Vector, Stack and Hashtable with ArrayList, LinkedList and Map respectively
+    - the methods in Vector, Stack and Hashtable are already synchronized
 - the iterator is fail-fast by throwing java.util.ConcurrentModificationException
-  - avoid by creating a synchronized collection object and acquiring a lock on the object when traversing it
+  - avoided by creating a synchronized collection object and acquiring a lock on the object when traversing it
   ```java
   Set mySet = Collections.synchronizedSet(new HashSet());
+  // mySet becomes a synchronization wrapper
   synchronized(mySet){
     Iterator ite = mySet.iterator();
     while(ite.hasNext()){

@@ -57,7 +57,7 @@ public class ConsumerProducer {
           notFull.await();
         }
 
-        queue.offer(value);
+        queue.offer(value); // add value to the tail
         notEmpty.signal();
       } catch (InterruptedException ex) {
         ex.printStackTrace();
@@ -75,7 +75,7 @@ public class ConsumerProducer {
           notEmpty.await();
         }
 
-        value = queue.remove();
+        value = queue.remove(); // remove the head element
         notFull.signal();
       } catch (InterruptedException ex) {
         ex.printStackTrace();
