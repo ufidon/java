@@ -1,7 +1,19 @@
 # Assignment4: Multithreading and parallel programming
 
 ## Q1: Raise flag (textbook programming exercises 32.3)
-Rewrite the rising flag animation below **using a thread** to animate the flag being raised.
+Rewrite the rising flag animation below **using a thread** to MANUALLY animate the flag being raised.
+
+- You can NOT use any animation classes such as PathTransition, FadeTransition, Timeline, etc.
+- Manual animation is changing the visual effect of nodes manually and gradually
+  - Raising a flag
+    - decreasing the $y$ coordinate of the imageView of a flag
+  - Lowering a flag
+    - increasing the $y$ coordinate of the imageView of a flag
+  - Fading out
+    - increasing transparency, or the $\alpha$ channel value
+  - Inflating a circle
+    - increasing its radius
+- Using Thread.sleep to adjust the animation speed
 
 ```java
 import javafx.animation.*;
