@@ -58,10 +58,19 @@ class PrintNum implements Runnable {
 Sample output
 ---
 - Note: your output could be different
-- Hint: use keyword synchronized to protect the text area when a thread is trying to update it.
 
 ![concurrent output](./images/concurrentOutput.png)
 
+Hints
+---
+- use keyword synchronized to protect the text area when a thread is trying to update it.
+  - Platform.runLater is unnecessary here
+  ```java
+  synchronized (textArea) {
+    textArea.appendText(char_or_number); 
+  }
+  ```
+- You may refer to a similar program [Typing Characters](./demos/TypeCharacter.java)
 
 ## Extra credit (10%) Rewrite Q1 with thread pool.
 
