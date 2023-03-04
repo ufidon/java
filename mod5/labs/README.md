@@ -63,12 +63,16 @@ Sample output
 
 Hints
 ---
-- use keyword synchronized to protect the text area when a thread is trying to update it.
+- You may use keyword synchronized to protect the text area when a thread is trying to update it.
   - Platform.runLater is unnecessary here
   ```java
   synchronized (textArea) {
-    textArea.appendText(char_or_number); 
+    textArea.appendText("" + char_or_number); 
   }
+  ```
+- You may also use Platform.runLater, then synchronized is unnecessary
+  ```java
+  Platform.runLater(() -> textArea.appendText("" + char_or_number));
   ```
 - You may refer to a similar program [Typing Characters](./demos/TypeCharacter.java)
 
