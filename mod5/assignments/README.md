@@ -41,7 +41,7 @@ public class FlagRisingAnimation extends Application {
     pt.setCycleCount(Timeline.INDEFINITE);
     pt.play();
     
-    Scene scene = new Scene(pane, 250, 200);
+    Scene scene = new Scene(pane, 250, 200); // sceneHeight = 200
     primaryStage.setTitle("FlagRisingByPathTransition");
     primaryStage.setScene(scene);
     primaryStage.show();
@@ -55,18 +55,34 @@ public class FlagRisingAnimation extends Application {
 
 Hints
 ---
-- The flag size is $160\times 84$ pixel by pixel
-- The flag moves 200+84 pixels in 2 seconds, i.e. the rising speed is about 7 milliseconds per pixel
+- The flag 
+
+![us flag](../../bookmedia/image/us.gif)
+
+  - size is $160\times 84$ pixels by pixels
+- The flag moves $200(sceneHeight) + 84(flagHeight)$ pixels in 2 seconds, i.e. the rising speed in the PathTransition animation is about 7 milliseconds per pixel
   - or 0.142 pixel per millisecond
-- so in the thread, the flag is raising 1 pixel in about 7 milliseconds
-- however, it will move slower than the animation above due to thread scheduling overhead
-- Could you change the speed to make the flag rise as fast as the animation?
+- so in the thread, the flag needs to be raised 1 pixel in about 7 milliseconds
+  - however, it will move slower than the PathTransition animation above due to thread scheduling overhead
+  - could you change the speed to make the flag rise as fast as the PathTransition animation?
+- round the flag back to the bottom when it disappears from the scene
+  - the coordinate system is the scene coordinate
+    - its origin is the top-left corner of the scene
+  - the origin (location relative to the scene) of the ImageView is also its top-left corner
+    - the bounds of its $y$ coordinate are shown below
+    - **Note**: however, in PathTransition, the pivot point is the center of the ImageView
+
+![flag roundback](./images/flagAnim.png)
 
 
 Sample output
 ---
 
 ![rising flag](./images/risingflag.gif)
+
+- Did you notice the problem in the sample output?
+  - What is it?
+  - What could be the reason?
 
 ## Extra credit (10%) Rewrite Q1 with speed adjustment by arrow keys
 - up arrow key: speed up
