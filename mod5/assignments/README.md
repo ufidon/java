@@ -80,9 +80,6 @@ Sample output
 
 ![rising flag](./images/risingflag.gif)
 
-- Did you notice the problem in the sample output?
-  - What is it?
-  - What could be the reason?
 
 ## Extra credit (10%) Rewrite Q1 with speed adjustment by arrow keys
 - up arrow key: speed up
