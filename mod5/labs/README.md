@@ -83,3 +83,6 @@ Sample output
 - Note: your output could be different
 
 ![extra concurrent output](./images/extraConcurrent.png)
+
+# References
+- [JavaFX Integration Strategies](https://www.oracle.com/technical-resources/articles/java/javafxinteg.html)
