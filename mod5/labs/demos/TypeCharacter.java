@@ -41,10 +41,11 @@ public class TypeCharacter extends Application {
     @Override
     public void run() {
       for (int i = 0; i < number; i++) {
+        try {Thread.sleep(100);} catch (Exception e) {}
+        
         /* 
         // Coding 1 :
-        synchronized(text){ text += symbol; }     
-        try {Thread.sleep(100);} catch (Exception e) {}
+        synchronized(text){ text += symbol; }    
         Platform.runLater(() -> label.setText(text));
         */
 
