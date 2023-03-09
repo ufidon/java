@@ -137,7 +137,7 @@ public class GenericMethodDemo {
 Bounded Generic Type
 ---
 - No inheritance in generic types
-  - Comparable<Circle> is NOT a subtype of Comparable<GeometricObject> 
+  - Comparable\<Circle\> is NOT a subtype of Comparable\<GeometricObject\> 
 - A generic type specified as a subtype of another type is called bounded
   - An unbounded generic type \<E\> is the same as \<E extends Object\>
 
