@@ -74,6 +74,9 @@ Hints
 
 ![flag roundback](./images/flagAnim.png)
 
+- You may refer to the example [Falling Rocket](./demos/FallingRocket.java)
+  - ![falling rocket](./images/fallingRocket.png)
+  - the rocket image is here ![rocket](./demos/rocket.png)
 
 Sample output
 ---
