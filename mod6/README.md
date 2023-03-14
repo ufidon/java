@@ -49,6 +49,8 @@ Data Transmission through Sockets
 
 ![data transmission](./images/cscom.png)
 
+- [server source code](./demos/cmdServer.java)
+- [client source code](./demos/cmdClient.java)
 
 A Client/Server Example
 ---
