@@ -3,6 +3,7 @@
 ## Q1: BMI server (textbook programming exercises 33.2)
 
 - Write a server computing BMI (Body Mass Index) and test it with the given [client](./code/BMIClient.class)
+  - **Note**: the server must be able to handle multiple clients simultaneously with multiple threads.
   - port number: 8000
   - Run the client from command line
     ```cmd
