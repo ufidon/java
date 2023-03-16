@@ -3,13 +3,13 @@
 ## Q1: BMI server (textbook programming exercises 33.2)
 
 - Write a server computing BMI (Body Mass Index) and test it with the given [client](./code/BMIClient.class)
-  - **Note**: the server must be able to handle multiple clients simultaneously with multiple threads.
+  - **Note**: the server must be able to handle multiple clients simultaneously with multiple threads
   - port number: 8000
   - Run the client from command line
     ```cmd
     java BMIClient
     ```
-  - The client sends the weight and height for a person to the server 
+  - The client sends the weight (send firstly) and height (send secondly) for a person to the server 
   - The server computes BMI  and sends back to the client a string that reports the BMI  - computing BMI is given below
 
 $$bmi = \dfrac{weightInKilograms}{heightInMeters \times heightInMeters} = \dfrac{weightInKilograms}{heightInMeters^2}$$
