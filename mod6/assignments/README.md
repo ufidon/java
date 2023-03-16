@@ -5,9 +5,18 @@
 - Write a server computing BMI (Body Mass Index) and test it with the given [client](./code/BMIClient.class)
   - **Note**: the server must be able to handle multiple clients simultaneously with multiple threads
   - port number: 8000
-  - Run the client from command line
+  - Run multiple clients from command prompt
     ```cmd
-    java BMIClient
+    :: (start, step, end)
+    for /L %i in (0,1,3) do start /b java BMIClient
+    :: NOTE: these clients overlapped, use mouse to drag and re-arrange
+    ```
+  - Run multiple client from Powershell
+    ```powershell
+    # start 3 clients at the same time
+    # NOTE: these clients overlapped, use mouse to drag and re-arrange
+    # you may change 3 below to whatever number you want
+    for ($i=0; $i -lt 3; $i++) {Start-Process "java" -ArgumentList BMIClient -NoNewWindow}
     ```
   - The client sends the weight (send firstly) and height (send secondly) for a person to the server 
   - The server computes BMI  and sends back to the client a string that reports the BMI  - computing BMI is given below
