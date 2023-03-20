@@ -7,7 +7,9 @@ Prerequisites: Setup MySQL
   - Setup with all default options, close XAMPP Control Panel if it runs after installation
   - Run XAMPP Control Panel as Administrator , start MySQL, click Shell, setup a password for root
     ```cmd
-     mysqladmin -u root password <your_password>
+    mysqladmin -u root password <your_password>
+    :: change password, need to enter old password first
+    mysqladmin -u root  password -p
     ```
   - Check MySQL works, in the previous shell (a command window)
     ```cmd
@@ -531,14 +533,5 @@ Practice 📝
     * [0.0.0.0](https://en.wikipedia.org/wiki/0.0.0.0)
   * [MySQL Connector/J](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j)
   * [Connect Java to a MySQL Database](https://www.baeldung.com/java-connect-mysql)
-* [DETERMINISTIC, NO SQL, or READS SQL DATA in its declaration and binary logging is enabled](https://stackoverflow.com/questions/26015160/deterministic-no-sql-or-reads-sql-data-in-its-declaration-and-binary-logging-i)
 * [MySQL cheatsheet](https://www.interviewbit.com/mysql-cheat-sheet/)
-* [sqlite](https://www.sqlite.org)
-  * [SQLite Java](https://www.sqlitetutorial.net/sqlite-java/)
-  * [DB Browser for SQLite](https://sqlitebrowser.org/)
-  * [SQLite JDBC Driver](https://github.com/xerial/sqlite-jdbc)
-* [Apache Derby](https://db.apache.org/derby/)
 * [Java – Set Classpath from Command Line](https://howtodoinjava.com/java-examples/set-classpath-command-line/)
-* [VirtualBox: How to set up networking so both host and guest can access internet and talk to each other](https://serverfault.com/questions/225155/virtualbox-how-to-set-up-networking-so-both-host-and-guest-can-access-internet)
-  * [How to access a NAT guest from host with VirtualBox](https://www.xmodulo.com/access-nat-guest-from-host-virtualbox.html)
-  * [VirtualBox: How To Access Host Port From Guest](https://dev.to/ahmedmusallam/virtualbox-how-to-access-host-port-from-guest-i6n)
