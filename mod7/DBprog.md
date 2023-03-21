@@ -23,15 +23,16 @@ Prerequisites: Setup MySQL
   # in the previous shell, cd into testdb
   mysql test < backup.sql -u root -p
   ```
-- Download [MySQL Connector/J](./resources/mysql-connector-j-8.0.32.jar) jar file and save it in the same folder as your source code for simplicity
+- Download MySQL Connector/J  jar file from [here](./resources/mysql-connector-j-8.0.32.jar) or [here](https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.32/mysql-connector-j-8.0.32.jar) and save it in the same folder as your source code for simplicity
 - Run the sample Java program below to test the database development environment is setup completely.
 
 ```java
 // test MySQL is accessible with MySQL Connector/J
 // 0. put mysql-connector-j-8.0.32.jar in the same folder as TestCon.java
 // 1. Run from Visual Studio Code:
-// add  mysql-connector-j-8.0.32.jar to Reference libraries
+// add  mysql-connector-j-8.0.32.jar to Java Projects -> Reference libraries
 // 2. Run from command line:
+// javac TestCon.java
 // java -classpath ".;mysql-connector-j-8.0.32.jar"   TestCon
 import java.sql.*;
 
