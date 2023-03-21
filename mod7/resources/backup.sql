@@ -29,7 +29,7 @@ CREATE TABLE `Course` (
   `title` varchar(50) NOT NULL,
   `numOfCredits` int DEFAULT NULL,
   PRIMARY KEY (`courseId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `Enrollment` (
   KEY `courseId` (`courseId`),
   CONSTRAINT `Enrollment_ibfk_1` FOREIGN KEY (`ssn`) REFERENCES `Student` (`ssn`),
   CONSTRAINT `Enrollment_ibfk_2` FOREIGN KEY (`courseId`) REFERENCES `Course` (`courseId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -89,7 +89,7 @@ CREATE TABLE `Student` (
   `zipCode` char(5) DEFAULT NULL,
   `deptId` char(4) DEFAULT NULL,
   PRIMARY KEY (`ssn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

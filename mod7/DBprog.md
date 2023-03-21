@@ -8,10 +8,10 @@ Prerequisites: Setup MySQL
   - Run XAMPP Control Panel as Administrator , start MySQL, click Shell, setup a password for root
     ```cmd
     mysqladmin -u root password <your_password>
-    :: change password, need to enter old password first
+    :: If you want to change password, need to enter old password first
     mysqladmin -u root  password -p
     ```
-  - Check MySQL works, in the previous shell (a command window)
+  - Check MySQL works, in the previous shell 
     ```cmd
     mysql -u root -p
     :: enter your password
@@ -20,18 +20,19 @@ Prerequisites: Setup MySQL
 - Create a folder testdb and cd into it, download [backup.sql](./resources/backup.sql) and save it in folder testdb
   - Load the test database
   ```bash
+  # in the previous shell, cd into testdb
   mysql test < backup.sql -u root -p
   ```
-- Download [MySQL Connector/J](https://mvnrepository.com/artifact/com.mysql/mysql-connector-j) jar file and save it in the same folder as your source code for simplicity
+- Download [MySQL Connector/J](./resources/mysql-connector-j-8.0.32.jar) jar file and save it in the same folder as your source code for simplicity
 - Run the sample Java program below to test the database development environment is setup completely.
 
 ```java
 // test MySQL is accessible with MySQL Connector/J
-// 0. put mysql-connector-j-8.0.31.jar in the same folder as TestCon.java
+// 0. put mysql-connector-j-8.0.32.jar in the same folder as TestCon.java
 // 1. Run from Visual Studio Code:
-// add  mysql-connector-j-8.0.31.jar to Reference libraries
+// add  mysql-connector-j-8.0.32.jar to Reference libraries
 // 2. Run from command line:
-// java -classpath ".;mysql-connector-j-8.0.31.jar"   TestCon
+// java -classpath ".;mysql-connector-j-8.0.32.jar"   TestCon
 import java.sql.*;
 
 class TestCon {
