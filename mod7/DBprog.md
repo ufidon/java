@@ -15,7 +15,10 @@ Prerequisites: Setup MySQL
     ```cmd
     mysql -u root -p
     :: enter your password
-    :: if you see Welcome to the MariaDB monitor, MySQL works
+    :: if you see Welcome to the MariaDB monitor, MySQL works, 
+    :: and you are inside MySQL console now
+    :: then quit MySQL console, go back to shell
+    exit;
     ```
 - Create a folder testdb and cd into it, download [backup.sql](./resources/backup.sql) and save it in folder testdb
   - Load the test database
