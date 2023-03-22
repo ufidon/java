@@ -19,7 +19,11 @@
     for ($i=0; $i -lt 3; $i++) {Start-Process "java" -ArgumentList BMIClient -NoNewWindow}
     ```
   - The client sends the weight (send firstly) and height (send secondly) for a person to the server 
-  - The server computes BMI  and sends back to the client a string that reports the BMI  - computing BMI is given below
+  - The server computes BMI  and sends back to the client
+    - a double number bmi (send first)
+    - a string that reports the BMI (send second)
+      - Hint: use method [writeUTF of a DataOutputStream](https://devdocs.io/openjdk~11/java.base/java/io/dataoutputstream)
+    - computing BMI is given below
 
 $$bmi = \dfrac{weightInKilograms}{heightInMeters \times heightInMeters} = \dfrac{weightInKilograms}{heightInMeters^2}$$
 
