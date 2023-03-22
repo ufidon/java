@@ -7,7 +7,7 @@ Prerequisites: Setup MySQL
   - Setup with all default options, close XAMPP Control Panel if it runs after installation
   - Run XAMPP Control Panel as Administrator , start MySQL, click Shell, setup a password for root
     ```cmd
-    mysqladmin -u root password <your_password>
+    mysqladmin -u root password your_password
     :: If you want to change password, need to enter old password first
     mysqladmin -u root  password -p
     ```

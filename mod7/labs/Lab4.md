@@ -3,15 +3,14 @@
 ## Q1: Access and update a Staff table 
 - textbook programming exercises 34.1
 
-(Access and update a Staff table) Write a program that views, inserts, and updates
-staff information stored in a database, as shown below
+(Access and update a Staff table) Write a program that views, inserts, and updates staff information stored in a database, as shown below
 
 ![staff database](./images/staffdb.png)
 
-- The View button displays a record with a specified ID
-- The Insert button inserts a new record 
-- The Update button updates the record for the specified ID
-- The Clear button clears all textfields
+- The *View* button displays a record with a specified ID
+- The *Insert* button inserts a new record 
+- The *Update* button updates the record for the specified ID
+- The *Clear* button clears all textfields **and the status label**
 
 A label on the top of the scene is used to show the status of the program. Each of the following operation has two results: success or fail.
 - connect to the database
@@ -19,11 +18,40 @@ A label on the top of the scene is used to show the status of the program. Each 
 - insert a new record
 - update the record for the specified ID
 
-The label text must be updated accordingly.
+*The label text must be updated accordingly.*
 
 The status message can be constructed as operation + "succeeded" or operation + "failed", for example
 - connecting to the database failed
 - connecting to the database succeeded
+
+- **Note: the screenshots of the following test cases are required.**
+
+1. startup, show database connection status, all textfields are cleared
+
+![startup](./images/s1.png)
+
+2. view a record with the specified ID, show succeed and fail
+
+| succeed | fail |
+| --- | --- |
+| ![view succeed](./images/s2s.png) | ![view fail](./images/s2f.png) |
+
+3. insert a new record, show succeed
+
+| succeed | fail |
+| --- | --- |
+| ![insert succeed](./images/s3s.png)  | Not required  |
+
+4. update the record for the specified ID, show before and after update
+
+| before update | after update |
+| --- | --- |
+| ![before update](./images/s4b.png)  | ![after upate](./images/s4a.png)  |
+
+5. clear GUI interface: all textfields **and the status label**
+
+![clear](./images/s5.png)
+
 
 The Staff table is created as follows:
 ```sql
