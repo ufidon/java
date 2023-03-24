@@ -208,6 +208,11 @@ Structured Query Language (SQL)
 - Examples of simple SQL statements
 
 ```sql
+-- double dashes start a single-line comment
+/* this is a 
+multiple-line
+comment, just like Java's multiple-line comment
+*/
 -- 0. create database dbname
 create database scratch;
 use scratch;
@@ -240,6 +245,7 @@ drop table Enrollment;
 drop table Course;
 drop table Student;
 
+use test; -- switch to database test
 -- 3. select column-list from table-list [where condition];
 select firstName, mi, lastName
 from Student
@@ -281,6 +287,7 @@ select distinct subjectId, title  from Course;
 -- 3.6 Display sorted tuples
 -- select column-list from table list [where condition]
 -- [order by columns-to-be-sorted]
+-- default order is ascending, asc could be omitted below
 select lastName, firstName, deptId from Student 
 where deptId = 'CS' 
 order by lastName desc, firstName asc;
@@ -294,6 +301,7 @@ where Student.ssn = Enrollment.ssn and lastName='Biden';
 -- values (vala, valb,..., valn)
 insert into Course (courseId, subjectId, courseNumber, title) 
 values ('11113', 'CSCI', '3720', 'Database Systems', 3);
+-- the statement above has a syntax error, could you correct it?
 
 -- 5. update tableName set cola=va [, colb=vb, ..., coln=vn] 
 -- [where condition];
@@ -304,6 +312,7 @@ where title = 'Database Systems';
 -- 6. delete from tableName [where condition];
 delete Course 
 where title = 'Database System';
+-- the statement above has a syntax error, could you correct it?
 ```
 
 
