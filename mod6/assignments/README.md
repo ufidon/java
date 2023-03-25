@@ -17,7 +17,7 @@
       :: 2. run 4 instances of BMIClient
       for /L %i in (0,1,3) do start /b java BMIClient
       ```
-    - If you forgot how to run java program from command prompt, please watch [this video](https://youtu.be/oWIGI9AUYqU) from 13:47 to 17:32
+    - If you forgot how to run java program from command prompt, please watch [this video](https://youtu.be/oWIGI9AUYqU) from 13:47 to 20:32
   - Run multiple clients from command prompt
     ```cmd
     :: (start, step, end)
