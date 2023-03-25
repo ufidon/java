@@ -2,9 +2,21 @@
 
 ## Q1: BMI server (textbook programming exercises 33.2)
 
-- Write a server computing BMI (Body Mass Index) and test it with the given [client](./code/BMIClient.class)
+- Write a server computing BMI (Body Mass Index) and test it with the given [BMIClient](./code/BMIClient.class)
   - **Note**: the server must be able to handle multiple clients simultaneously with multiple threads
   - port number: 8000
+  - **Note: How to run the BMIClient?**
+    - Download the given [BMIClient](./code/BMIClient.class) and save it in your current working folder where you save your BMIServer.java
+    - Open a command prompt window, *cd* into your working folder
+    - type command *dir*, if you see *BMIClient.class* then you are in the right folder
+    - run BMIClient
+      ```cmd
+      :: 1. run a single instance of BMIClient
+      java BMIClient
+      :: 2. run 4 instances of BMIClient
+      for /L %i in (0,1,3) do start /b java BMIClient
+      ```
+    - If you forgot how to run java program from command prompt, please watch [this video]((https://youtu.be/oWIGI9AUYqU)) from 13:47 to 17:32
   - Run multiple clients from command prompt
     ```cmd
     :: (start, step, end)
