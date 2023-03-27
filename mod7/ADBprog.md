@@ -235,7 +235,7 @@ ImageIcon imageIcon = new ImageIcon(blob.getBytes(1, (int)blob.length()));
 ```
 
 
-Practice 📝 Scroll and Update Table
+Practice 📝 Store and Retrieve Images
 ---
 - create a table country
   - retrieve and display images
