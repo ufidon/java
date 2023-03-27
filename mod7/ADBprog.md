@@ -22,6 +22,17 @@ Practice 📝 Create an interactive SQL client
 - [source code](./demos/SQLClient.java)
 
 
+Explore 🔎
+---
+- Explore [JDBC Driver list for all leading database](https://www.benchresources.net/jdbc-driver-list-and-url-for-all-databases/)
+  - It is necessary to check DBMS official website for recent info
+
+
+Practice 📝
+---
+- Install and use [MySQL Database Client in VS Code](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2)
+
+
 Batch Update
 ---
 - consist of a sequence of non-select SQL commands
@@ -43,10 +54,10 @@ Batch Update
   ```
 
 
-Practice 📝 Copy Text Files to Table
+Practice 📝 Copy Text File to Table
 ---
 
-![copy text files to table](./images/cftt.png)
+![copy text file to table](./images/cftt.png)
 
 - The text file is a csv (comma-separated values) file
 - string values are enclosed in single quotes
@@ -62,7 +73,7 @@ Practice 📝 Copy Text Files to Table
   ```
 
   ```bash
-  # 2. create a csv file with the following contents
+  # 2. create a csv file with the following sample contents
   'Joe', 'K', 'Biden'
   'Donald', 'M', 'Trump'
   'Bill', 'J', 'Gate'
@@ -72,32 +83,33 @@ Practice 📝 Copy Text Files to Table
 
 Scrollable and Updatable Result Set
 ---
-- JDBC 1 supports only sequential forward reading
+- JDBC 1 supports only sequential forward reading in its result sets
   - A result set maintains a cursor pointing to its current row of data
     - initial position is before the first row 
   - The next() method moves the cursor forward to the next row
-- JDBC 2
-  - can scroll the rows both forward and backward 
+- JDBC 2 supports scrollable and updatable result sets, which can
+  - scroll the rows both forward and backward 
   - move the cursor to a desired location using 
     - the first, last, next, previous, 
     - absolute, or relative method
-  - can insert, delete, or update a row in the result set 
+  - insert, delete, or update a row in the result set 
     - the changes automatically reflect in the database
 
 
 Create [Scrollable Statements](https://devdocs.io/openjdk~11/java.sql/java/sql/resultset)
 ---
-- must first create a statement with an appropriate type and concurrency mode
+- Create a statement with an appropriate type and concurrency mode
+  - to obtain a scrollable or updatable result set
   ```java
-  // For a static statement
+  // 1.a For a static statement
   Statement statement = connection.createStatement
   (int resultSetType, int resultSetConcurrency);
 
-  // For a prepared statement
+  // 1.b For a prepared statement
   PreparedStatement statement = connection.prepareStatement
   (String sql, int resultSetType, int resultSetConcurrency);
 
-  // The resulting set is scrollable
+  // 2. The resulting set is scrollable
   ResultSet resultSet = statement.executeQuery(query);
   ```
 - resultSetType could be
@@ -122,15 +134,72 @@ Practice 📝
 - [source code](./demos/ScrollUpdateResultSet.java)
 
 
-RowSet: JdbcRowSet and CachedRowSet
+RowSet
 ---
 
 ![resultset](./images/rs.png)
 
 - introduced in JDBC 2 for simplifying database programming 
-- extends java.sql.ResultSet with additional capabilities of 
-  - connecting to a JDBC url, username, password, set a SQL command, execute the command 
-  - retrieving the execution result
+- combines Connection, Statement, and ResultSet into one interface
+- extends java.sql.ResultSet with additional capabilities to 
+  - connect to a JDBC url, username, password
+  - set and execute SQL command, 
+    - retrieve the execution result
+- has two types: 
+  - connected such as JdbcRowSet 
+  - disconnected such as CachedRowSet
+
+
+connected RowSet
+---
+- makes a connection with a data source 
+- maintains that connection throughout its life cycle
+- JdbcRowSet is neither serializable nor cloneable
+
+
+disconnected RowSet
+---
+- makes a connection with a data source, 
+- executes a query to get data from the data source, 
+- then closes the connection
+- makes change to its data while it is disconnected 
+  - then send the changes back to the original source of the data
+    - it must reestablish a connection to do so
+- CachedRowSet is both serializable and cloneable
+
+
+Practice 📝
+---
+
+```java
+import javax.sql.rowset.*;
+
+public class SimpleRowSet {
+  public static void main(String[] args) {
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      System.out.println("Driver loaded");
+
+      CachedRowSet rowSet = RowSetProvider.newFactory().createCachedRowSet();
+
+      rowSet.setUrl("jdbc:mysql://localhost/test");
+      rowSet.setUsername("root");
+      rowSet.setPassword("your_password");
+      rowSet.setCommand("select firstName, mi, lastName " +
+          "from Student where lastName = 'Trump'");
+      rowSet.execute();
+
+      while (rowSet.next())
+        System.out.println(rowSet.getString(1) + "\t" +
+            rowSet.getString(2) + "\t" + rowSet.getString(3));
+
+      rowSet.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}
+```
 
 
 SQL BLOB and CLOB Types
@@ -202,3 +271,5 @@ Practice 📝 Scroll and Update Table
   ```java
   insert into Country values('Cananda', LOAD_FILE('./image/ca.gif'), 'Canada');
   ```
+- [Inserting a row into a ResultSet in a JDBC application](https://www.ibm.com/docs/en/db2-for-zos/11?topic=sqlj-inserting-row-into-resultset-in-jdbc-application)
+- [JAVA ERROR : package com.sun.rowset is not visible : com.sun.rowset is declared in module java.sql.rowset, which does not export it](https://stackoverflow.com/questions/48129475/java-error-package-com-sun-rowset-is-not-visible-com-sun-rowset-is-declared)
