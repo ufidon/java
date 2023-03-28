@@ -134,10 +134,10 @@ Practice 📝
 - [source code](./demos/ScrollUpdateResultSet.java)
 
 
-RowSet
+[RowSet](https://devdocs.io/openjdk~11/java.sql/javax/sql/rowset) basics
 ---
 
-![resultset](./images/rs.png)
+![RowSet](./images/rs.png)
 
 - introduced in JDBC 2 for simplifying database programming 
 - combines Connection, Statement, and ResultSet into one interface
@@ -202,17 +202,251 @@ public class SimpleRowSet {
 ```
 
 
+RowSet for PreparedStatement
+---
+- RowSet supports parameterized SQL statements
+-  RowSet extends ResultSet
+   -  so all the methods in ResultSet can be used in RowSet 
+      -  For example, obtaining ResultSetMetaData using the getMetaData() 
+
+
+Practice 📝
+---
+```java
+import java.sql.*;
+import javax.sql.rowset.*;
+
+public class RowSetPreparedStatement {
+  public static void main(String[] args)
+      throws SQLException, ClassNotFoundException {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    System.out.println("Driver loaded");
+
+    JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();
+
+    rowSet.setUrl("jdbc:mysql://localhost/test");
+    rowSet.setUsername("root");
+    rowSet.setPassword("dees");
+    rowSet.setCommand("select * from Student where lastName = ? " +
+      "and mi = ?");
+    rowSet.setString(1, "Trump");
+    rowSet.setString(2, "M");
+    rowSet.execute();
+
+    ResultSetMetaData rsMetaData = rowSet.getMetaData();
+    for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
+      System.out.printf("%-12s\t", rsMetaData.getColumnName(i));
+    System.out.println();
+
+    while (rowSet.next()) {
+      for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
+        System.out.printf("%-12s\t", rowSet.getObject(i));
+      System.out.println();
+    }
+
+    rowSet.close();
+  }
+}
+```
+
+
+RowSet Scrolling and Updating 
+---
+- By default, a ResultSet object is neither scrollable nor updatable
+- However, a RowSet object is both
+
+
+Practice 📝
+---
+- use [JdbcRowSet](https://devdocs.io/openjdk~11/java.sql.rowset/javax/sql/rowset/jdbcrowset)
+```java
+import java.sql.*;
+import javax.sql.RowSet;
+import javax.sql.rowset.*;
+
+public class ScrollUpdateRowSet {
+  public static void main(String[] args)
+      throws SQLException, ClassNotFoundException {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    System.out.println("Driver loaded");
+
+    JdbcRowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();
+
+    rowSet.setUrl("jdbc:mysql://localhost/test");
+    rowSet.setUsername("root");
+    rowSet.setPassword("your_password");
+    
+    rowSet.setCommand("select state, capital from StateCapital");
+    rowSet.execute();
+
+    System.out.println("Before update ");
+    displayRowSet(rowSet);
+
+    rowSet.absolute(2);
+    rowSet.updateString("state", "New S");
+    rowSet.updateString("capital", "New C");
+    rowSet.updateRow();
+
+    rowSet.last();
+    rowSet.moveToInsertRow();
+    rowSet.updateString("state", "Florida");
+    rowSet.updateString("capital", "Tallahassee");
+    rowSet.insertRow();
+    rowSet.moveToCurrentRow();
+
+    rowSet.absolute(4);
+    rowSet.deleteRow();
+
+    System.out.println("After update ");
+    displayRowSet(rowSet);
+
+    rowSet.close();
+  }
+
+  private static void displayRowSet(RowSet rowSet)
+      throws SQLException {
+    ResultSetMetaData rsMetaData = rowSet.getMetaData();
+    rowSet.beforeFirst();
+    while (rowSet.next()) {
+      for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
+        System.out.printf("%-12s\t", rowSet.getObject(i));
+      System.out.println();
+    }
+  }
+}
+```
+
+- use [CachedRowSet](https://devdocs.io/openjdk~11/java.sql.rowset/javax/sql/rowset/cachedrowset)
+
+```java
+import java.sql.*;
+import javax.sql.RowSet;
+import javax.sql.rowset.*;
+
+public class ScrollUpdateRowSet {
+  public static void main(String[] args) {
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      System.out.println("Driver loaded");
+
+      Connection conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost/test", "root", "your_password");
+      conn.setAutoCommit(false);
+      CachedRowSet rowSet = RowSetProvider.newFactory().createCachedRowSet();
+
+      rowSet.setCommand("select state, capital from StateCapital");
+      rowSet.execute(conn);
+
+      System.out.println("Before update ");
+      displayRowSet(rowSet);
+      System.out.println("\n--------------------------------------\n");
+
+      rowSet.absolute(2);
+      rowSet.updateString("state", "Texas");
+      rowSet.updateString("capital", "Austin");
+      rowSet.updateRow();
+
+      rowSet.last();
+      rowSet.moveToInsertRow();
+      rowSet.updateString("state", "Florida");
+      rowSet.updateString("capital", "Tallahassee");
+      rowSet.insertRow();
+      rowSet.moveToCurrentRow();
+
+      rowSet.absolute(1);
+      rowSet.deleteRow();
+
+      rowSet.acceptChanges();
+      System.out.println("After update ");
+      displayRowSet(rowSet);
+
+      rowSet.close();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  private static void displayRowSet(RowSet rowSet)
+      throws SQLException {
+    ResultSetMetaData rsMetaData = rowSet.getMetaData();
+    rowSet.beforeFirst();
+    while (rowSet.next()) {
+      for (int i = 1; i <= rsMetaData.getColumnCount(); i++)
+        System.out.printf("%-12s\t", rowSet.getObject(i));
+      System.out.println();
+    }
+  }
+}
+```
+
+
+[RowSetEvent](https://devdocs.io/openjdk~11/java.sql/javax/sql/rowsetevent)
+---
+- A RowSet object fires a RowSetEvent whenever the object’s 
+  - cursor has moved,
+  - a row has changed, or 
+  - the entire row set has changed
+- The handlers in RowSetListener are 
+  - cursorMoved(RowSetEvent),
+  - rowChanged(RowSetEvent), and
+  - cursorSetChanged(RowSetEvent)
+
+
+Practice 📝
+---
+```java
+import java.sql.*;
+import javax.sql.*;
+import javax.sql.rowset.*;
+
+public class TestRowSetEvent {
+  public static void main(String[] args)
+      throws SQLException, ClassNotFoundException {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    System.out.println("Driver loaded");
+
+    RowSet rowSet = RowSetProvider.newFactory().createJdbcRowSet();
+    rowSet.addRowSetListener(new RowSetListener() {
+      public void cursorMoved(RowSetEvent e) {
+        System.out.println("Cursor moved");
+      }
+      
+      public void rowChanged(RowSetEvent e) {
+        System.out.println("Row changed");
+      }
+      
+      public void rowSetChanged(RowSetEvent e) {
+        System.out.println("row set changed");
+      }
+    });
+
+    rowSet.setUrl("jdbc:mysql://localhost/test");
+    rowSet.setUsername("root");
+    rowSet.setPassword("your_password");
+    rowSet.setCommand("select * from Student");
+    rowSet.execute(); 
+
+    rowSet.last();
+    rowSet.updateString("lastName", "Trump");
+    rowSet.updateRow();
+    
+    rowSet.close();
+  }
+}
+```
+
+
 SQL BLOB and CLOB Types
 ---
-- BLOB (Binary Large OBject) 
+- [BLOB (Binary Large OBject)](http://www.herongyang.com/JDBC/MySQL-BLOB-Large-Object.html) 
   - stores binary data, which can be used to store images
     ```java
     create table Country(name varchar(30), flag blob, description varchar(255));
     ```
-  - supported by interface java.sql.Blob
-- CLOB (Character Large OBject) 
+  - supported by interface [java.sql.Blob](https://devdocs.io/openjdk~11/java.sql/java/sql/blob)
+- [CLOB (Character Large OBject)] (http://www.herongyang.com/JDBC/MySQL-CLOB-Columns-CREATE-TABLE.html)
   - stores a large text in the character format
-  - supported by interface java.sql.Clob
+  - supported by interface [java.sql.Clob](https://devdocs.io/openjdk~11/java.sql/java/sql/clob)
 - supported by the methods of interfaces ResultSet and PreparedStatement
   - getBlob, setBlob, setBinaryStream, getClob, and setClob
 
@@ -251,6 +485,8 @@ Practice 📝 Store and Retrieve Images
     -- in database test, create table Country
     create table Country(name varchar(30), flag blob, description varchar(255));
     alter table Country add primary key(name);
+    -- insert manually
+    -- insert into Country values('Cananda', LOAD_FILE('./image/ca.gif'), 'Canada description');
     ``` 
 
 
@@ -273,3 +509,4 @@ Practice 📝 Store and Retrieve Images
   ```
 - [Inserting a row into a ResultSet in a JDBC application](https://www.ibm.com/docs/en/db2-for-zos/11?topic=sqlj-inserting-row-into-resultset-in-jdbc-application)
 - [JAVA ERROR : package com.sun.rowset is not visible : com.sun.rowset is declared in module java.sql.rowset, which does not export it](https://stackoverflow.com/questions/48129475/java-error-package-com-sun-rowset-is-not-visible-com-sun-rowset-is-declared)
+- [JDBC Tutorials - Herong's Tutorial Examples](http://www.herongyang.com/JDBC/index.html)
