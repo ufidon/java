@@ -447,7 +447,7 @@ SQL BLOB and CLOB Types
     create table Country(name varchar(30), flag blob, description varchar(255));
     ```
   - supported by interface [java.sql.Blob](https://devdocs.io/openjdk~11/java.sql/java/sql/blob)
-- [CLOB (Character Large OBject)] (http://www.herongyang.com/JDBC/MySQL-CLOB-Columns-CREATE-TABLE.html)
+- [CLOB (Character Large OBject)](http://www.herongyang.com/JDBC/MySQL-CLOB-Columns-CREATE-TABLE.html)
   - stores a large text in the character format
   - supported by interface [java.sql.Clob](https://devdocs.io/openjdk~11/java.sql/java/sql/clob)
 - supported by the methods of interfaces ResultSet and PreparedStatement
