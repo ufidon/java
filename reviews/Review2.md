@@ -2,6 +2,12 @@
 
 Covers Chapter 12, 14-16.
 
+Online questions
+---
+- [Student CheckPoint Questions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/#checkpoints)
+- [Student Self-Test Questions](https://media.pearsoncmg.com/ph/esm/ecs_liang_ijp_12/cw/#selftest)
+
+
 Popular Java exceptions and their hierarchy
 ---
 - Throwable is the root of all Java exceptions and errors
