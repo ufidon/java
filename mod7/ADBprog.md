@@ -154,6 +154,7 @@ connected RowSet
 ---
 - makes a connection with a data source 
 - maintains that connection throughout its life cycle
+  - sends the changes back to data source automatically
 - JdbcRowSet is neither serializable nor cloneable
 
 
@@ -259,6 +260,7 @@ RowSet Scrolling and Updating
 Practice 📝
 ---
 - use [JdbcRowSet](https://devdocs.io/openjdk~11/java.sql.rowset/javax/sql/rowset/jdbcrowset)
+  - sends the changes back to data source automatically
 ```java
 import java.sql.*;
 import javax.sql.RowSet;
@@ -317,6 +319,7 @@ public class ScrollUpdateRowSet {
 ```
 
 - use [CachedRowSet](https://devdocs.io/openjdk~11/java.sql.rowset/javax/sql/rowset/cachedrowset)
+  - manually call acceptChanges() to sends the changes back to data source
 
 ```java
 import java.sql.*;
@@ -386,7 +389,7 @@ public class ScrollUpdateRowSet {
   - cursor has moved,
   - a row has changed, or 
   - the entire row set has changed
-- The handlers in RowSetListener are 
+- The handlers in interface RowSetListener are 
   - cursorMoved(RowSetEvent),
   - rowChanged(RowSetEvent), and
   - cursorSetChanged(RowSetEvent)
