@@ -4,11 +4,10 @@
 - textbook programming exercises 35.1
 
 Write a program that 
-- inserts a thousand records to a database, and
+- inserts 5000 records to a database, and
 - compare the performance with and without batch updates, 
 - as shown below
-
-
+- ![batch update vs non-batch update](./images/buvsnbu.png)
 - Suppose the table is defined as follows:
   ```sql
   create table Temp(num1 double, num2 double, num3 double)
@@ -17,7 +16,8 @@ Write a program that
 - Create a dialog box that contains DBConnectionPanel as described in the Extra Credit
   - its jar file is provide [here](./resources/DBConnectionPane.jar) 
     - use the jar file in VS Code
-      - Add DBConnectionPane.jar to "JAVA PROJECTS" -> "Referenced Libraries"
+      - Add to "JAVA PROJECTS" -> "Referenced Libraries"
+        - DBConnectionPane.jar and mysql-connector-j-8.0.32.jar
     - use the jar file from command line
       ```cmd
       :: 1. compile 
@@ -25,8 +25,31 @@ Write a program that
       :: 2. run
       java -classpath ".;mysql-connector-j-8.0.32.jar;DBConnectionPane.jar"   TestDBConnectionPane
       ```
-  - Use this dialog box to connect to the database
-
+  - Use this dialog box to connect to the database as shown below
+  - ![connect to database](./images/con2db.png)
+- **Hints**
+  - Batch update implementation in one thread
+    - drop the table Temp
+    - create the table Temp
+    - mark start time with System.currentTimeMillis()
+    - loop 5000 times, in each iteration add an insert statement to batch
+    - execute batch
+    - mark end time with System.currentTimeMillis()
+    - get the time consumed = endTime - startTime
+  - Non-batch update implementation in another thread
+    - drop the table Temp
+    - create the table Temp
+    - mark start time with System.currentTimeMillis()
+    - loop 5000 times, in each iteration execute an insert statement
+    - mark end time with System.currentTimeMillis()
+    - get the time consumed = endTime - startTime
+- update the textarea from both threads using Platform.runLater
+- construct the insert statement
+  ```java
+  "INSERT INTO TEMP VALUES(" +
+          Math.random() * 1000 + ", " + Math.random() * 100 + ", " +
+          Math.random() * 10 + ")"
+  ```
 
 
 ## Extra Credit (10%) Implement the DBConnectionPanel
@@ -86,3 +109,4 @@ class DBConnectionPane extends BorderPane {
 - [Dynamically loading a class in Java](https://stackoverflow.com/questions/5571466/dynamically-loading-a-class-in-java)
 - [Create a JAR File Containing the Class File](https://docs.oracle.com/javase/tutorial/security/toolsign/step2.html)
   - [Guide to Creating and Running a Jar File in Java](https://www.baeldung.com/java-create-jar)
+- [Lock table in oracle database using JDBC driver](https://stackoverflow.com/questions/8570440/lock-table-in-oracle-database-using-jdbc-driver)
