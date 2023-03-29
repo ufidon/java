@@ -9,9 +9,6 @@ Write a program that
 - as shown below
 - ![batch update vs non-batch update](./images/buvsnbu.png)
 - Suppose the table is defined as follows:
-  ```sql
-  create table Temp(num1 double, num2 double, num3 double)
-  ```
 - Use the Math.random() method to generate random numbers for each record
 - Create a dialog box that contains DBConnectionPanel as described in the Extra Credit
   - its jar file is provide [here](./resources/DBConnectionPane.jar) 
@@ -29,27 +26,41 @@ Write a program that
   - ![connect to database](./images/con2db.png)
 - **Hints**
   - Batch update implementation in one thread
-    - drop the table Temp
-    - create the table Temp
+    - drop the table BATCH
+      ```sql
+      drop table if exists BATCH;
+      ```
+    - create the table BATCH
+      ```sql
+      create table BATCH(num1 double, num2 double, num3 double)
+      ```
     - mark start time with System.currentTimeMillis()
     - loop 5000 times, in each iteration add an insert statement to batch
+      ```java
+      // construct the insert statement
+      "INSERT INTO BATCH VALUES(" + Math.random() * 1000 + ", " + Math.random() * 100 + ", " + Math.random() * 10 + ")"
+      ```
     - execute batch
     - mark end time with System.currentTimeMillis()
     - get the time consumed = endTime - startTime
   - Non-batch update implementation in another thread
-    - drop the table Temp
-    - create the table Temp
+    - drop the table NONBATCH
+      ```sql
+      drop table if exists NONBATCH;
+      ```
+    - create the table NONBATCH
+      ```sql
+      create table NONBATCH(num1 double, num2 double, num3 double)
+      ```
     - mark start time with System.currentTimeMillis()
     - loop 5000 times, in each iteration execute an insert statement
+      ```java
+      // construct the insert statement
+      "INSERT INTO NONBATCH VALUES(" + (Math.random() * 1000 + 1000) + ", " + Math.random() * 100 + ", " + Math.random() * 10 + ")"
+      ```
     - mark end time with System.currentTimeMillis()
     - get the time consumed = endTime - startTime
 - update the textarea from both threads using Platform.runLater
-- construct the insert statement
-  ```java
-  "INSERT INTO TEMP VALUES(" +
-          Math.random() * 1000 + ", " + Math.random() * 100 + ", " +
-          Math.random() * 10 + ")"
-  ```
 
 
 ## Extra Credit (10%) Implement the DBConnectionPanel
