@@ -9,7 +9,10 @@ Write a program that
 - as shown below
 - ![batch update vs non-batch update](./images/buvsnbu.png)
 - Suppose the table is defined as follows:
-- Use the Math.random() method to generate random numbers for each record
+  ```sql
+  create table DBTABLE(num1 double, num2 double, num3 double)
+  ```
+  - Use the Math.random() method to generate random numbers for each record
 - Create a dialog box that contains DBConnectionPanel as described in the Extra Credit
   - its jar file is provide [here](./resources/DBConnectionPane.jar) 
     - use the jar file in VS Code
@@ -26,37 +29,37 @@ Write a program that
   - ![connect to database](./images/con2db.png)
 - **Hints**
   - Batch update implementation in one thread
-    - drop the table BATCH
+    - drop the table TBBATCH
       ```sql
-      drop table if exists BATCH;
+      drop table if exists TBBATCH;
       ```
-    - create the table BATCH
+    - create the table TBBATCH
       ```sql
-      create table BATCH(num1 double, num2 double, num3 double)
+      create table TBBATCH(num1 double, num2 double, num3 double)
       ```
     - mark start time with System.currentTimeMillis()
     - loop 5000 times, in each iteration add an insert statement to batch
       ```java
       // construct the insert statement
-      "INSERT INTO BATCH VALUES(" + Math.random() * 1000 + ", " + Math.random() * 100 + ", " + Math.random() * 10 + ")"
+      "INSERT INTO TBBATCH VALUES(" + Math.random() * 1000 + ", " + Math.random() * 100 + ", " + Math.random() * 10 + ")"
       ```
     - execute batch
     - mark end time with System.currentTimeMillis()
     - get the time consumed = endTime - startTime
   - Non-batch update implementation in another thread
-    - drop the table NONBATCH
+    - drop the table TBNONBATCH
       ```sql
-      drop table if exists NONBATCH;
+      drop table if exists TBNONBATCH;
       ```
-    - create the table NONBATCH
+    - create the table TBNONBATCH
       ```sql
-      create table NONBATCH(num1 double, num2 double, num3 double)
+      create table TBNONBATCH(num1 double, num2 double, num3 double)
       ```
     - mark start time with System.currentTimeMillis()
     - loop 5000 times, in each iteration execute an insert statement
       ```java
       // construct the insert statement
-      "INSERT INTO NONBATCH VALUES(" + (Math.random() * 1000 + 1000) + ", " + Math.random() * 100 + ", " + Math.random() * 10 + ")"
+      "INSERT INTO TBNONBATCH VALUES(" + (Math.random() * 1000 + 1000) + ", " + Math.random() * 100 + ", " + Math.random() * 10 + ")"
       ```
     - mark end time with System.currentTimeMillis()
     - get the time consumed = endTime - startTime
