@@ -109,4 +109,5 @@ class DBConnectionPane extends BorderPane {
 - [Dynamically loading a class in Java](https://stackoverflow.com/questions/5571466/dynamically-loading-a-class-in-java)
 - [Create a JAR File Containing the Class File](https://docs.oracle.com/javase/tutorial/security/toolsign/step2.html)
   - [Guide to Creating and Running a Jar File in Java](https://www.baeldung.com/java-create-jar)
-- [Lock table in oracle database using JDBC driver](https://stackoverflow.com/questions/8570440/lock-table-in-oracle-database-using-jdbc-driver)
+- [MySQL lock table](https://dev.mysql.com/doc/refman/8.0/en/lock-tables.html)
+  - [Lock table in oracle database using JDBC driver](https://stackoverflow.com/questions/8570440/lock-table-in-oracle-database-using-jdbc-driver)
