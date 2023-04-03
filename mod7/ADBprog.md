@@ -508,8 +508,29 @@ Practice 📝 Store and Retrieve Images
   ```
 * [How to insert image in mysql database(table)?](https://stackoverflow.com/questions/14704559/how-to-insert-image-in-mysql-databasetable)
   ```java
+  -- insert a file as a blob
   insert into Country values('Cananda', LOAD_FILE('./image/ca.gif'), 'Canada');
+  -- save a blob as a file
+  select flag into dumpfile "./canana.gif" from Country where name='Canada';
   ```
+  - [Exporting Blob from MySQL database to file with only SQL](https://stackoverflow.com/questions/4646533/exporting-blob-from-mysql-database-to-file-with-only-sql)
+    - [How should I resolve --secure-file-priv in MySQL?](https://stackoverflow.com/questions/32737478/how-should-i-resolve-secure-file-priv-in-mysql)
+      - [MySQL Server System Variables](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html)
+        - [SET Syntax for Variable Assignment](https://dev.mysql.com/doc/refman/5.7/en/set-variable.html)
+          - [How to set mysql system variables such as max_allowed_packet max_allowed_packet, character_set_server and collation-server through Dockerfile?](https://stackoverflow.com/questions/44261591/how-to-set-mysql-system-variables-such-as-max-allowed-packet-max-allowed-packet)
+            ```docker
+            command: ["--default-authentication-plugin=mysql_native_password", "--secure_file_priv=./"]
+            ```
+          - [MySQL SHOW VARIABLES Statement](https://dev.mysql.com/doc/refman/8.0/en/show-variables.html)
+            - [How should I resolve --secure-file-priv in MySQL?](https://stackoverflow.com/questions/32737478/how-should-i-resolve-secure-file-priv-in-mysql)
+              ```sql
+              -- load data into MySQL
+              LOAD DATA INFILE "text.txt" INTO table mytable;
+              -- generate error: The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+              SHOW VARIABLES LIKE "secure_file_priv";
+              -- set secure_file_priv in my.ini
+              ```
+    - [MySQL: SELECT ... INTO Statement](https://dev.mysql.com/doc/refman/8.0/en/select-into.html)
 - [Inserting a row into a ResultSet in a JDBC application](https://www.ibm.com/docs/en/db2-for-zos/11?topic=sqlj-inserting-row-into-resultset-in-jdbc-application)
 - [JAVA ERROR : package com.sun.rowset is not visible : com.sun.rowset is declared in module java.sql.rowset, which does not export it](https://stackoverflow.com/questions/48129475/java-error-package-com-sun-rowset-is-not-visible-com-sun-rowset-is-declared)
 - [JDBC Tutorials - Herong's Tutorial Examples](http://www.herongyang.com/JDBC/index.html)
