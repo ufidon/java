@@ -494,6 +494,9 @@ CallableStatement
       return result;
     end;
     //
+
+    // verify:  need MariaDB built with '--with-debug' to have it working
+    SHOW FUNCTION CODE test.studentFound;
     ```
 
 Practice 📝
@@ -549,3 +552,4 @@ Practice 📝
   * [Connect Java to a MySQL Database](https://www.baeldung.com/java-connect-mysql)
 * [MySQL cheatsheet](https://www.interviewbit.com/mysql-cheat-sheet/)
 * [Java – Set Classpath from Command Line](https://howtodoinjava.com/java-examples/set-classpath-command-line/)
+* [SHOW PROCEDURE CODE Statement](https://dev.mysql.com/doc/refman/8.0/en/show-procedure-code.html)
