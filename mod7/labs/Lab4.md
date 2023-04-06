@@ -8,8 +8,31 @@
 ![staff database](./images/staffdb.png)
 
 - The *View* button displays a record with a specified ID
+  - suggested SQL: 
+  ```sql
+  SELECT * FROM Staff WHERE ID =  specifiedID
+  ```
 - The *Insert* button inserts a new record 
+  - suggested SQL: 
+  ```sql
+  -- make sure the order of the values is in the same order as the columns in the table
+  INSERT INTO Staff VALUES(ID, LastName, FirstName, mi, Address, City, State, Telephone, Email);
+  ```
 - The *Update* button updates the record for the specified ID
+  - suggested SQL: 
+  ```sql
+  -- gXXXs are the values retrieved from the textfields
+  UPDATE Staff  SET 
+      LastName = gLastName,
+      FirstName = gFirstName,
+      mi = gMi,
+      Address = gAddress,
+      City = gCity,
+      State = gState,
+      Telephone = gTelephone,
+      Email = gEmail -- no comma for this last one
+  WHERE ID =  specifiedID
+  ```
 - The *Clear* button clears all textfields **and the status label**
 
 A label on the top of the scene is used to show the status of the program. Each of the following operation has two results: success or fail.
@@ -23,6 +46,10 @@ A label on the top of the scene is used to show the status of the program. Each 
 The status message can be constructed as operation + "succeeded" or operation + "failed", for example
 - connecting to the database failed
 - connecting to the database succeeded
+- **Hints**: 
+  - use try...catch blocks
+    - show successful message in the try block
+    - show failed message in the catch block
 
 - **Note: the screenshots of the following test cases are required.**
 
@@ -72,3 +99,6 @@ create table Staff (
 
 ## Extra credit (10%)
 Implement Q1 with PreparedStatement.
+
+# References
+- [MySQL tutorial](https://www.w3schools.com/MySQL/)
