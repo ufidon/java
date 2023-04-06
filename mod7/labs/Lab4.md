@@ -8,17 +8,20 @@
 ![staff database](./images/staffdb.png)
 
 - The *View* button displays a record with a specified ID
+  - use Statement.executeQuery 
   - suggested SQL: 
   ```sql
   SELECT * FROM Staff WHERE ID =  specifiedID
   ```
 - The *Insert* button inserts a new record 
+  - use Statement.executeUpdate 
   - suggested SQL: 
   ```sql
   -- make sure the order of the values is in the same order as the columns in the table
   INSERT INTO Staff VALUES(ID, LastName, FirstName, mi, Address, City, State, Telephone, Email);
   ```
 - The *Update* button updates the record for the specified ID
+  - use Statement.executeUpdate 
   - suggested SQL: 
   ```sql
   -- gXXXs are the values retrieved from the textfields
