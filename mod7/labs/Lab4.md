@@ -18,7 +18,8 @@
   - suggested SQL: 
   ```sql
   -- make sure the order of the values is in the same order as the columns in the table
-  INSERT INTO Staff VALUES(ID, LastName, FirstName, mi, Address, City, State, Telephone, Email);
+  -- gXXXs are the values retrieved from the textfields
+  INSERT INTO Staff VALUES(gID, gLastName, gFirstName, gmi, gAddress, gCity, gState, gTelephone, gEmail);
   ```
 - The *Update* button updates the record for the specified ID
   - use Statement.executeUpdate 
@@ -28,7 +29,7 @@
   UPDATE Staff  SET 
       LastName = gLastName,
       FirstName = gFirstName,
-      mi = gMi,
+      mi = gmi,
       Address = gAddress,
       City = gCity,
       State = gState,
