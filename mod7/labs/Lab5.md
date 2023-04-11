@@ -78,6 +78,9 @@ Write a program that
     - a Connection object for the database is stored in the connection property
     - You can then use the getConnection() method to return the connection
 
+- DBConnectionPane class diagram
+  - ![DBConnectionPane](./images/dbcp.jpg)
+
 | Before connection | After connection |
 | --- | --- |
 | ![unconnected](./images/dbcon1.png) | ![connected](./images/dbcon2.png) |
