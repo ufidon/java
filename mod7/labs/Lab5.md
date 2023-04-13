@@ -27,6 +27,14 @@ Write a program that
       ```
   - Use this dialog box to connect to the database as shown below
   - ![connect to database](./images/con2db.png)
+  - The DBConnectionPane provides 3 public methods for your use
+
+| method | usage |
+| --- | --- |
+| DBConnectionPane() | constructor, used to create a DBConnectionPane |
+| connectDB() | connect to a database |
+| getConnection(): Connection | get the database connection for further usage |
+
 - **Hints**
   - create a thread for each update to avoid frizzing the GUI
   - Batch update implementation in one thread
