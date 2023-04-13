@@ -13,7 +13,7 @@ Write a program that
   create table DBTABLE(num1 double, num2 double, num3 double)
   ```
   - Use the Math.random() method to generate random numbers for each record
-- Create a dialog box that contains DBConnectionPanel as described in the Extra Credit
+- Create a dialog box that contains DBConnectionPane shown in the red box below
   - its jar file is provide [here](./resources/DBConnectionPane.jar) 
     - use the jar file in VS Code
       - Add to "JAVA PROJECTS" -> "Referenced Libraries"
@@ -28,6 +28,7 @@ Write a program that
   - Use this dialog box to connect to the database as shown below
   - ![connect to database](./images/con2db.png)
 - **Hints**
+  - create a thread for each update to avoid frizzing the GUI
   - Batch update implementation in one thread
     - drop the table TBBATCH
       ```sql
