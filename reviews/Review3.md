@@ -68,13 +68,17 @@ class PrintNum implements Runnable {
 }
 ```
 
-- 32.2 How to create animation manually using a nonapplication thread and the Platform.runLater Method?
+- 32.2  In the program above, the Runnable interface is implemented in inner class, rewrite it using
+  - anonymous inner class
+  - lambda expression
+
+- 32.3 How to create animation manually using a nonapplication thread and the Platform.runLater Method?
   - Layout JavaFX GUI in the JavaFX *application* thread
   - In the nonapplication thread
     - update GUI in the application thread by invoking Platform.runLater(Runnable r)
       - this Runnable object will be executed in the application thread
       - modify GUI in the run method of this Runnable object
-    - adjust animation speed using Thread.sleep(long millis)
+    - adjust animation speed using Thread.sleep(long milliseconds)
 
 ```java
 import javafx.application.Application;
@@ -131,4 +135,25 @@ public class BouncingBall extends Application {
   }
 }
 ```
+
+- 32.4 What is race condition? How to avoid it?
+- 32.5 Describe the five thread states and their transition
+
+
+# 33 ▶️ Networking
+- 33.1 Describe the steps in Client/Server communications
+- 33.2 How to serve multiple clients from one server?
+- 33.3 How to send/receive objects over network?
+- 33.4 Compare stream socket and datagram socket
+- 33.5 Compare stream socket programming and datagram programming
+
+
+# 34 ▶️ Java Database Programming
+
+
+
+
+# 35 ▶️ Advanced Database Programming
+
+
 

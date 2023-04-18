@@ -22,9 +22,9 @@ Client/Server Communications
 ![client server communication](./images/cs.png)
 
 - The server starts and waits for a connection request from a client
-  - A server is established with a server socket and attached to a port listening for connections
-- The client requests a connection to a server
-- After the server accepts the connection, communication between server and client is conducted the same as for I/O streams
+  - A server is established with a [server socket](https://devdocs.io/openjdk~11/java.base/java/net/serversocket) and attached to a port listening for connections
+- The client requests a connection to a server using a [client socket](https://devdocs.io/openjdk~11/java.base/java/net/socket)
+- After the server accepts the connection, communication between server and client is conducted the same as for [Input stream](https://devdocs.io/openjdk~11/java.base/java/io/inputstream)/[Output stream](https://devdocs.io/openjdk~11/java.base/java/io/outputstream)
 
 
 ```java
