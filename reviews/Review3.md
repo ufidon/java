@@ -149,11 +149,28 @@ public class BouncingBall extends Application {
 
 
 # 34 ▶️ Java Database Programming
-
+- 34.1 Describe the major steps developing JDBC programs
+- 34.2 Compare Statement, PreparedStatement and CallableStatement
+- 34.3 When do we need execute, executeQuery and executeUpdate
+- 34.4 Is a preparedStatement more efficient than its counterpart Statement?
+- 34.5 How to get database and table information during runtime?
 
 
 
 # 35 ▶️ Advanced Database Programming
+- 35.1 Could a Java program connect to multiple databases?
+  - If yes, how?
+- 35.2 How to create an interactive SQL client?
+- 35.3 Can batch update be used to run multiple select SQL commands?
+- 35.4 What can a scrollable and updatable ResultSet do?
+- 35.5 How to create a scrollable and updatable ResultSet?
+- 35.6 Compare connected RowSet and disconnected RowSet
+- 35.7 Does RowSet support parameterized SQL statements?
+  - If yes, how?
+- 35.8 Can a RowSet get meta data?
+- 35.9 Is a RowSet scrollable and updatable?
+- 35.10 What events does a RowSet support?
+- 35.11 How to store and retrieve images in JDBC?
 
 
 
